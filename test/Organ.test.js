@@ -39,16 +39,5 @@ contract('Organ', (accounts) => {
 
             await organ.signSubmission(0, { from: accounts[2]}).should.be.rejected
         })
-        it('or going past the max length', async () => {
-            await jingle.composeBaseMelody([100, 2, 4, -2, -4], [0, 1, 2, 3, 63], [1, 1, 1, 1, 2], min, { value: min }).should.be.rejected
-        })
-        it('cannot copy an already existing Melody', async () => {
-            await jingle.composeBaseMelody([100, 2, 4, -2, -4], [0, 1, 2, 3, 4], [1, 1, 1, 1, 1], min, { value: min }).should.be.fulfilled
-            await jingle.composeBaseMelody([100, 2, 4, -2, -4], [0, 1, 2, 3, 4], [1, 1, 1, 1, 1], min, { value: min }).should.be.rejected
-        })
-        it('arrays must be sorted', async () => {
-            await jingle.composeBaseMelody([100, 2, 4, -2, -4], [0, 1, 2, 3, 2], [1, 1, 1, 1, 2], min, { value: min }).should.be.rejected
-            await jingle.composeBaseMelody([100, 2, 1, -2, -4], [0, 0, 0, 3, 2], [1, 1, 1, 1, 2], min, { value: min }).should.be.rejected
-        })
     })
 })

@@ -56,20 +56,20 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
     }
 
     function signSubmission(uint256 _id) onlyRole(ROLE_SIGNER) public {
-        //require(pendingSubmissions[_id].submitted == true && pendingSubmissions[_id].finished == false);
+        require(pendingSubmissions[_id].submitted == true && pendingSubmissions[_id].finished == false);
 
-        // Signatures storage signature = pendingSubmissions[_id];
+        Signatures storage signature = pendingSubmissions[_id];
 
-        // uint256 numSignature = signature.sigsCollected;
-        // pendingSubmissions[_id].signatures.push(true);
-        // emit Sign(msg.sender, _id, numSignature.add(1));
+        uint256 numSignature = signature.sigsCollected;
+        signature.signatures[numSignature] = true;
+        emit Sign(msg.sender, _id, numSignature++);
 
-        // numSignature = pendingSubmissions[_id].sigsCollected;
-        // if(numSignature == 3) {
-        //     pendingSubmissions[_id].finished = true;
-        //     emit SubmissionFinished(_id);
-        // }
-        // pendingSubmissions[_id].sigsCollected++;
+        signature.sigsCollected++;
+        numSignature = signature.sigsCollected;
+        if(numSignature == 3) {
+            signature.finished = true;
+            emit SubmissionFinished(_id);
+        }
     }
 
     function mintOrgan(uint256 _id, address _donor, address _recipient, uint256 _expiration) onlyRole(ROLE_OPO) public {
