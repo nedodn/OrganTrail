@@ -20,20 +20,20 @@ module.exports = function(deployer, network, accounts) {
     await instance.addSigner(donor_signer_1, {from: opo});
     await instance.addSigner(donor_signer_2, {from: opo});
 
-    await instance.submitOrgan({from: opo});
+    await instance.submitOrgan(donor_doctor, "A", 12, {from: opo});
     await instance.signSubmission(0, {from: donor_doctor});
     await instance.signSubmission(0, {from: donor_signer_1});
     await instance.signSubmission(0, {from: donor_signer_1});
-    await instance.mintOrgan(0, donor_doctor, recipient_a, 1e6, {from: opo});
+    await instance.mintOrgan(0, recipient_a, 1e6, {from: opo});
     await instance.approve(delivery_trucker, 0, {from: opo});
 
-    await instance.submitOrgan({from: opo});
+    await instance.submitOrgan(donor_doctor, "B", 12, {from: opo});
     await instance.signSubmission(1, {from: donor_doctor});
     await instance.signSubmission(1, {from: donor_signer_1});
     await instance.signSubmission(1, {from: donor_signer_1});
-    await instance.mintOrgan(1, donor_doctor, recipient_b, 1e6, {from: opo});
+    await instance.mintOrgan(1, recipient_b, 1e6, {from: opo});
     await instance.approve(delivery_trucker, 1, {from: opo});
 
-    await instance.getApproved(0).then(console.log);
+    // await instance.getApproved(0).then(console.log);
   });
 };

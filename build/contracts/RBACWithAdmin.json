@@ -143,14 +143,14 @@
     "absolutePath": "/Users/saurfang/workspace/OrganTrail/contracts/zeppelin/rbac/RBACWithAdmin.sol",
     "exportedSymbols": {
       "RBACWithAdmin": [
-        2088
+        2178
       ]
     },
-    "id": 2089,
+    "id": 2179,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2031,
+        "id": 2121,
         "literals": [
           "solidity",
           "^",
@@ -163,10 +163,10 @@
       {
         "absolutePath": "/Users/saurfang/workspace/OrganTrail/contracts/zeppelin/rbac/RBAC.sol",
         "file": "./RBAC.sol",
-        "id": 2032,
+        "id": 2122,
         "nodeType": "ImportDirective",
-        "scope": 2089,
-        "sourceUnit": 2030,
+        "scope": 2179,
+        "sourceUnit": 2120,
         "src": "26:20:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -177,41 +177,41 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2033,
+              "id": 2123,
               "name": "RBAC",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2029,
+              "referencedDeclaration": 2119,
               "src": "255:4:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_RBAC_$2029",
+                "typeIdentifier": "t_contract$_RBAC_$2119",
                 "typeString": "contract RBAC"
               }
             },
-            "id": 2034,
+            "id": 2124,
             "nodeType": "InheritanceSpecifier",
             "src": "255:4:13"
           }
         ],
         "contractDependencies": [
-          2029
+          2119
         ],
         "contractKind": "contract",
         "documentation": "@title RBACWithAdmin\n@author Matt Condon (@Shrugs)\n@dev It's recommended that you define constants in the contract,\n@dev like ROLE_ADMIN below, to avoid typos.",
         "fullyImplemented": true,
-        "id": 2088,
+        "id": 2178,
         "linearizedBaseContracts": [
-          2088,
-          2029
+          2178,
+          2119
         ],
         "name": "RBACWithAdmin",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 2037,
+            "id": 2127,
             "name": "ROLE_ADMIN",
             "nodeType": "VariableDeclaration",
-            "scope": 2088,
+            "scope": 2178,
             "src": "325:43:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -220,7 +220,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2035,
+              "id": 2125,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "325:6:13",
@@ -232,7 +232,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "61646d696e",
-              "id": 2036,
+              "id": 2126,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -251,7 +251,7 @@
           },
           {
             "body": {
-              "id": 2046,
+              "id": 2136,
               "nodeType": "Block",
               "src": "469:51:13",
               "statements": [
@@ -263,18 +263,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2040,
+                          "id": 2130,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2173,
+                          "referencedDeclaration": 2263,
                           "src": "485:3:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 2041,
+                        "id": 2131,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -290,11 +290,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2042,
+                        "id": 2132,
                         "name": "ROLE_ADMIN",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2037,
+                        "referencedDeclaration": 2127,
                         "src": "497:10:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory",
@@ -313,18 +313,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2039,
+                      "id": 2129,
                       "name": "checkRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1959,
+                      "referencedDeclaration": 2049,
                       "src": "475:9:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory) view"
                       }
                     },
-                    "id": 2043,
+                    "id": 2133,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -338,23 +338,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2044,
+                  "id": 2134,
                   "nodeType": "ExpressionStatement",
                   "src": "475:33:13"
                 },
                 {
-                  "id": 2045,
+                  "id": 2135,
                   "nodeType": "PlaceholderStatement",
                   "src": "514:1:13"
                 }
               ]
             },
             "documentation": "@dev modifier to scope access to admins\n// reverts",
-            "id": 2047,
+            "id": 2137,
             "name": "onlyAdmin",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 2038,
+              "id": 2128,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "464:2:13"
@@ -364,7 +364,7 @@
           },
           {
             "body": {
-              "id": 2056,
+              "id": 2146,
               "nodeType": "Block",
               "src": "633:42:13",
               "statements": [
@@ -376,18 +376,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2051,
+                          "id": 2141,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2173,
+                          "referencedDeclaration": 2263,
                           "src": "647:3:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 2052,
+                        "id": 2142,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -403,11 +403,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2053,
+                        "id": 2143,
                         "name": "ROLE_ADMIN",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2037,
+                        "referencedDeclaration": 2127,
                         "src": "659:10:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory",
@@ -426,18 +426,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2050,
+                      "id": 2140,
                       "name": "addRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1996,
+                      "referencedDeclaration": 2086,
                       "src": "639:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory)"
                       }
                     },
-                    "id": 2054,
+                    "id": 2144,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -451,14 +451,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2055,
+                  "id": 2145,
                   "nodeType": "ExpressionStatement",
                   "src": "639:31:13"
                 }
               ]
             },
             "documentation": "@dev constructor. Sets msg.sender as admin by default",
-            "id": 2057,
+            "id": 2147,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -466,19 +466,19 @@
             "name": "RBACWithAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2048,
+              "id": 2138,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "617:2:13"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2049,
+              "id": 2139,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "633:0:13"
             },
-            "scope": 2088,
+            "scope": 2178,
             "src": "595:80:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -486,7 +486,7 @@
           },
           {
             "body": {
-              "id": 2071,
+              "id": 2161,
               "nodeType": "Block",
               "src": "873:34:13",
               "statements": [
@@ -496,11 +496,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2067,
+                        "id": 2157,
                         "name": "addr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2059,
+                        "referencedDeclaration": 2149,
                         "src": "887:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -509,11 +509,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2068,
+                        "id": 2158,
                         "name": "roleName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2061,
+                        "referencedDeclaration": 2151,
                         "src": "893:8:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -532,18 +532,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2066,
+                      "id": 2156,
                       "name": "addRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1996,
+                      "referencedDeclaration": 2086,
                       "src": "879:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory)"
                       }
                     },
-                    "id": 2069,
+                    "id": 2159,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -557,28 +557,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2070,
+                  "id": 2160,
                   "nodeType": "ExpressionStatement",
                   "src": "879:23:13"
                 }
               ]
             },
             "documentation": "@dev add a role to an address\n@param addr address\n@param roleName the name of the role",
-            "id": 2072,
+            "id": 2162,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2064,
+                "id": 2154,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2063,
+                  "id": 2153,
                   "name": "onlyAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2047,
+                  "referencedDeclaration": 2137,
                   "src": "850:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -592,15 +592,15 @@
             "name": "adminAddRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2062,
+              "id": 2152,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2059,
+                  "id": 2149,
                   "name": "addr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2072,
+                  "scope": 2162,
                   "src": "815:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -609,7 +609,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2058,
+                    "id": 2148,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "815:7:13",
@@ -623,10 +623,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2061,
+                  "id": 2151,
                   "name": "roleName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2072,
+                  "scope": 2162,
                   "src": "829:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -635,7 +635,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2060,
+                    "id": 2150,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "829:6:13",
@@ -652,12 +652,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 2065,
+              "id": 2155,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "873:0:13"
             },
-            "scope": 2088,
+            "scope": 2178,
             "src": "793:114:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -665,7 +665,7 @@
           },
           {
             "body": {
-              "id": 2086,
+              "id": 2176,
               "nodeType": "Block",
               "src": "1113:37:13",
               "statements": [
@@ -675,11 +675,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2082,
+                        "id": 2172,
                         "name": "addr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2074,
+                        "referencedDeclaration": 2164,
                         "src": "1130:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -688,11 +688,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2083,
+                        "id": 2173,
                         "name": "roleName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2076,
+                        "referencedDeclaration": 2166,
                         "src": "1136:8:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -711,18 +711,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2081,
+                      "id": 2171,
                       "name": "removeRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2016,
+                      "referencedDeclaration": 2106,
                       "src": "1119:10:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory)"
                       }
                     },
-                    "id": 2084,
+                    "id": 2174,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -736,28 +736,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2085,
+                  "id": 2175,
                   "nodeType": "ExpressionStatement",
                   "src": "1119:26:13"
                 }
               ]
             },
             "documentation": "@dev remove a role from an address\n@param addr address\n@param roleName the name of the role",
-            "id": 2087,
+            "id": 2177,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2079,
+                "id": 2169,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2078,
+                  "id": 2168,
                   "name": "onlyAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2047,
+                  "referencedDeclaration": 2137,
                   "src": "1090:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -771,15 +771,15 @@
             "name": "adminRemoveRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2077,
+              "id": 2167,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2074,
+                  "id": 2164,
                   "name": "addr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2087,
+                  "scope": 2177,
                   "src": "1055:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -788,7 +788,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2073,
+                    "id": 2163,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1055:7:13",
@@ -802,10 +802,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2076,
+                  "id": 2166,
                   "name": "roleName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2087,
+                  "scope": 2177,
                   "src": "1069:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -814,7 +814,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2075,
+                    "id": 2165,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1069:6:13",
@@ -831,19 +831,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 2080,
+              "id": 2170,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1113:0:13"
             },
-            "scope": 2088,
+            "scope": 2178,
             "src": "1030:120:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2089,
+        "scope": 2179,
         "src": "229:923:13"
       }
     ],
@@ -853,14 +853,14 @@
     "absolutePath": "/Users/saurfang/workspace/OrganTrail/contracts/zeppelin/rbac/RBACWithAdmin.sol",
     "exportedSymbols": {
       "RBACWithAdmin": [
-        2088
+        2178
       ]
     },
-    "id": 2089,
+    "id": 2179,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2031,
+        "id": 2121,
         "literals": [
           "solidity",
           "^",
@@ -873,10 +873,10 @@
       {
         "absolutePath": "/Users/saurfang/workspace/OrganTrail/contracts/zeppelin/rbac/RBAC.sol",
         "file": "./RBAC.sol",
-        "id": 2032,
+        "id": 2122,
         "nodeType": "ImportDirective",
-        "scope": 2089,
-        "sourceUnit": 2030,
+        "scope": 2179,
+        "sourceUnit": 2120,
         "src": "26:20:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -887,41 +887,41 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2033,
+              "id": 2123,
               "name": "RBAC",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2029,
+              "referencedDeclaration": 2119,
               "src": "255:4:13",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_RBAC_$2029",
+                "typeIdentifier": "t_contract$_RBAC_$2119",
                 "typeString": "contract RBAC"
               }
             },
-            "id": 2034,
+            "id": 2124,
             "nodeType": "InheritanceSpecifier",
             "src": "255:4:13"
           }
         ],
         "contractDependencies": [
-          2029
+          2119
         ],
         "contractKind": "contract",
         "documentation": "@title RBACWithAdmin\n@author Matt Condon (@Shrugs)\n@dev It's recommended that you define constants in the contract,\n@dev like ROLE_ADMIN below, to avoid typos.",
         "fullyImplemented": true,
-        "id": 2088,
+        "id": 2178,
         "linearizedBaseContracts": [
-          2088,
-          2029
+          2178,
+          2119
         ],
         "name": "RBACWithAdmin",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": true,
-            "id": 2037,
+            "id": 2127,
             "name": "ROLE_ADMIN",
             "nodeType": "VariableDeclaration",
-            "scope": 2088,
+            "scope": 2178,
             "src": "325:43:13",
             "stateVariable": true,
             "storageLocation": "default",
@@ -930,7 +930,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 2035,
+              "id": 2125,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "325:6:13",
@@ -942,7 +942,7 @@
             "value": {
               "argumentTypes": null,
               "hexValue": "61646d696e",
-              "id": 2036,
+              "id": 2126,
               "isConstant": false,
               "isLValue": false,
               "isPure": true,
@@ -961,7 +961,7 @@
           },
           {
             "body": {
-              "id": 2046,
+              "id": 2136,
               "nodeType": "Block",
               "src": "469:51:13",
               "statements": [
@@ -973,18 +973,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2040,
+                          "id": 2130,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2173,
+                          "referencedDeclaration": 2263,
                           "src": "485:3:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 2041,
+                        "id": 2131,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1000,11 +1000,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2042,
+                        "id": 2132,
                         "name": "ROLE_ADMIN",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2037,
+                        "referencedDeclaration": 2127,
                         "src": "497:10:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory",
@@ -1023,18 +1023,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2039,
+                      "id": 2129,
                       "name": "checkRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1959,
+                      "referencedDeclaration": 2049,
                       "src": "475:9:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory) view"
                       }
                     },
-                    "id": 2043,
+                    "id": 2133,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1048,23 +1048,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2044,
+                  "id": 2134,
                   "nodeType": "ExpressionStatement",
                   "src": "475:33:13"
                 },
                 {
-                  "id": 2045,
+                  "id": 2135,
                   "nodeType": "PlaceholderStatement",
                   "src": "514:1:13"
                 }
               ]
             },
             "documentation": "@dev modifier to scope access to admins\n// reverts",
-            "id": 2047,
+            "id": 2137,
             "name": "onlyAdmin",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 2038,
+              "id": 2128,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "464:2:13"
@@ -1074,7 +1074,7 @@
           },
           {
             "body": {
-              "id": 2056,
+              "id": 2146,
               "nodeType": "Block",
               "src": "633:42:13",
               "statements": [
@@ -1086,18 +1086,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2051,
+                          "id": 2141,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2173,
+                          "referencedDeclaration": 2263,
                           "src": "647:3:13",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 2052,
+                        "id": 2142,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1113,11 +1113,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2053,
+                        "id": 2143,
                         "name": "ROLE_ADMIN",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2037,
+                        "referencedDeclaration": 2127,
                         "src": "659:10:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory",
@@ -1136,18 +1136,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2050,
+                      "id": 2140,
                       "name": "addRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1996,
+                      "referencedDeclaration": 2086,
                       "src": "639:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory)"
                       }
                     },
-                    "id": 2054,
+                    "id": 2144,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1161,14 +1161,14 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2055,
+                  "id": 2145,
                   "nodeType": "ExpressionStatement",
                   "src": "639:31:13"
                 }
               ]
             },
             "documentation": "@dev constructor. Sets msg.sender as admin by default",
-            "id": 2057,
+            "id": 2147,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -1176,19 +1176,19 @@
             "name": "RBACWithAdmin",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2048,
+              "id": 2138,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "617:2:13"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2049,
+              "id": 2139,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "633:0:13"
             },
-            "scope": 2088,
+            "scope": 2178,
             "src": "595:80:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1196,7 +1196,7 @@
           },
           {
             "body": {
-              "id": 2071,
+              "id": 2161,
               "nodeType": "Block",
               "src": "873:34:13",
               "statements": [
@@ -1206,11 +1206,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2067,
+                        "id": 2157,
                         "name": "addr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2059,
+                        "referencedDeclaration": 2149,
                         "src": "887:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1219,11 +1219,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2068,
+                        "id": 2158,
                         "name": "roleName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2061,
+                        "referencedDeclaration": 2151,
                         "src": "893:8:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1242,18 +1242,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2066,
+                      "id": 2156,
                       "name": "addRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1996,
+                      "referencedDeclaration": 2086,
                       "src": "879:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory)"
                       }
                     },
-                    "id": 2069,
+                    "id": 2159,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1267,28 +1267,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2070,
+                  "id": 2160,
                   "nodeType": "ExpressionStatement",
                   "src": "879:23:13"
                 }
               ]
             },
             "documentation": "@dev add a role to an address\n@param addr address\n@param roleName the name of the role",
-            "id": 2072,
+            "id": 2162,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2064,
+                "id": 2154,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2063,
+                  "id": 2153,
                   "name": "onlyAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2047,
+                  "referencedDeclaration": 2137,
                   "src": "850:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1302,15 +1302,15 @@
             "name": "adminAddRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2062,
+              "id": 2152,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2059,
+                  "id": 2149,
                   "name": "addr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2072,
+                  "scope": 2162,
                   "src": "815:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1319,7 +1319,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2058,
+                    "id": 2148,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "815:7:13",
@@ -1333,10 +1333,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2061,
+                  "id": 2151,
                   "name": "roleName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2072,
+                  "scope": 2162,
                   "src": "829:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1345,7 +1345,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2060,
+                    "id": 2150,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "829:6:13",
@@ -1362,12 +1362,12 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 2065,
+              "id": 2155,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "873:0:13"
             },
-            "scope": 2088,
+            "scope": 2178,
             "src": "793:114:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1375,7 +1375,7 @@
           },
           {
             "body": {
-              "id": 2086,
+              "id": 2176,
               "nodeType": "Block",
               "src": "1113:37:13",
               "statements": [
@@ -1385,11 +1385,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2082,
+                        "id": 2172,
                         "name": "addr",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2074,
+                        "referencedDeclaration": 2164,
                         "src": "1130:4:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1398,11 +1398,11 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 2083,
+                        "id": 2173,
                         "name": "roleName",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2076,
+                        "referencedDeclaration": 2166,
                         "src": "1136:8:13",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1421,18 +1421,18 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 2081,
+                      "id": 2171,
                       "name": "removeRole",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2016,
+                      "referencedDeclaration": 2106,
                       "src": "1119:10:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (address,string memory)"
                       }
                     },
-                    "id": 2084,
+                    "id": 2174,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1446,28 +1446,28 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2085,
+                  "id": 2175,
                   "nodeType": "ExpressionStatement",
                   "src": "1119:26:13"
                 }
               ]
             },
             "documentation": "@dev remove a role from an address\n@param addr address\n@param roleName the name of the role",
-            "id": 2087,
+            "id": 2177,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
             "modifiers": [
               {
                 "arguments": null,
-                "id": 2079,
+                "id": 2169,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2078,
+                  "id": 2168,
                   "name": "onlyAdmin",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2047,
+                  "referencedDeclaration": 2137,
                   "src": "1090:9:13",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1481,15 +1481,15 @@
             "name": "adminRemoveRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2077,
+              "id": 2167,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2074,
+                  "id": 2164,
                   "name": "addr",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2087,
+                  "scope": 2177,
                   "src": "1055:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1498,7 +1498,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2073,
+                    "id": 2163,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1055:7:13",
@@ -1512,10 +1512,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 2076,
+                  "id": 2166,
                   "name": "roleName",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2087,
+                  "scope": 2177,
                   "src": "1069:15:13",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1524,7 +1524,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2075,
+                    "id": 2165,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1069:6:13",
@@ -1541,19 +1541,19 @@
             },
             "payable": false,
             "returnParameters": {
-              "id": 2080,
+              "id": 2170,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1113:0:13"
             },
-            "scope": 2088,
+            "scope": 2178,
             "src": "1030:120:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2089,
+        "scope": 2179,
         "src": "229:923:13"
       }
     ],
@@ -1565,5 +1565,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-19T21:55:02.163Z"
+  "updatedAt": "2018-05-19T22:09:38.510Z"
 }
