@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+import '../../node_modules/jquery-ui';
+import '../../node_modules/jquery-ui-bundle';
 
 import BlockChain from '../components/BlockChain';
 import Phone from '../components/Phone';
@@ -8,13 +11,17 @@ import '../assets/css/hospital.css';
 
 class Hospital extends Component {
     
+    state = {
+        blockchain: null
+    }
+
     displayBlockChain() {
-        if(true) {
-            return ( <div /> )
-        }else{
+        if(this.state.blockchain) {
             return(
                 <BlockChain />
             )
+        }else{
+            return ( <div /> )
         }
     }
     displayPhone() {
@@ -26,8 +33,25 @@ class Hospital extends Component {
             )
         }
     }
-
+    toggleState() {
+        this.setState({blockchain: true});
+    }
     render() {
+
+        $( function() {
+            $( "#draggable" ).draggable();
+            $( "#droppable" ).droppable({
+              drop: function( event, ui ) {
+
+                $(".heart-img").removeClass("heart-img-border");
+                setTimeout(() => {
+                    // web3 call here
+                    $(".block-trigger").click();
+                }, 1500);
+              }
+            });
+          } );
+
         return(
             <div className="row">
                 <div className="col s12 m12">
@@ -35,6 +59,7 @@ class Hospital extends Component {
                    {this.displayBlockChain()}
                     
                     <div className="row">
+                        <div className="block-trigger" onClick={() => this.toggleState()} />
                         <div className="col s9 m9">
                             {/* hospital view */}
                             <div className="hospital-header-block moveFromBottomFade">
@@ -43,12 +68,12 @@ class Hospital extends Component {
 
                             <div className="hospital-describe-block moveFromTopFade">
                                 <div className="hospital-describe-text">Organ Pending Submission</div>
-                                <div className="hospital-describe-text-bot">Adds an organ for review by OPO</div>
+                                <div className="hospital-describe-text-bot">Hospital Organ ID: #5974932784</div>
                             </div>
                             <div className="row">
                                 <div className="col s3 m3">
                                     <div className="heart-img-block">
-                                        <img className="heart-img" src={HeartImg} alt="" />
+                                        <img className="heart-img heart-img-border" id="draggable" src={HeartImg} alt="" />
                                     </div>
                                 </div>
                                 <div className="col s6 m6">
@@ -60,13 +85,14 @@ class Hospital extends Component {
                                     </div>
                                 </div>
                                 <div className="col s3 m3">
-                                    <div className="heart-img-block">
-                                        <div className="heart-img-right" />
-                                    </div>
+                                    <div className="organ-submit-text" id="droppable">Adds organ for review by OPO</div>
                                 </div>
                             </div>
 
                             {/* checklist */}
+                            <div>
+
+                            </div>
 
                             {/* confirm organ */}
 

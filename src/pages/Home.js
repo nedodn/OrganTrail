@@ -16,7 +16,7 @@ class Home extends Component {
                     <Link to='/hospital'>
                         <h1 className="home-title-text">Organ Trail</h1>
                     </Link>
-                    <h4 className="home-title-tag-text">Track and Tracing of organs donations using the blockchain</h4>
+                    <h4 className="home-title-tag-text">Track and Tracing of organ donations using the blockchain</h4>
                 </div>
             </div>
         )

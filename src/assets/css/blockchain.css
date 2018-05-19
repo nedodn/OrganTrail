@@ -1,5 +1,5 @@
 .blockchain-bg {
-    height: 11em;
+    height: 12em;
     padding: 0.25em;
     border-bottom: 1px solid grey;
     margin-top: 1em;
@@ -14,6 +14,7 @@
     width: 13.45em;
     margin: 0.75em;
     cursor: pointer;
+    margin-top: -0.5em;
     /* border: 1px solid rgb(69, 128, 133); */
 }
 .block-bg {
@@ -26,10 +27,115 @@
     text-align: center;
 }
 .block-square {
-    width: 9.5em;
+  width: 9.5em;
+  margin-top: -0.25em;
 }
 .block-main-text {
-    margin-top: -0.45em;
-    text-align: center;
+  margin-top: -0.45em;
+  text-align: center;
+}
+.block-tx-text {
+  margin-top: -1em;
+  text-align: center
 }
 
+.block-chain-icon-one {
+  margin-top: 1.55em;
+  margin-left: -1.85em;
+  font-size: 2.25em !important;
+  color:rgb(173, 196, 198);
+  position: absolute;
+}
+.block-chain-icon-two {
+  margin-top: 1.55em;
+  margin-left: -0.7410em;
+  font-size: 2.25em !important;
+  color:rgb(130, 159, 162);
+  position: absolute;
+}
+.block-chain-icon-thre {
+  margin-top: 1.55em;
+  margin-left: 0.25em;
+  font-size: 2.25em !important;
+  color:rgb(109, 154, 159);
+  position: absolute;
+}
+
+/*https://github.com/szchenghuang/react-transitions/blob/master/src/animations.css*/
+@keyframes rotate360 {
+  to {
+    transform: rotate(360deg); } }
+
+/*.cycle-arrow {
+        animation: 48s rotate360 infinite linear;
+        opacity: .26;
+    }*/
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.43; }
+  100% {
+    opacity: 1; } }
+
+@-o-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.43; }
+  100% {
+    opacity: 1; } }
+
+@-moz-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.43; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.43; }
+  100% {
+    opacity: 1; } }
+
+.dot-group {
+  height: 2.5em; }
+
+.dot-img {
+  width: 1.5em !important; }
+
+.dot-row {
+  height: 0.95em !important;
+  margin: auto;
+  text-align: center; }
+
+.dots-anim-one {
+  -webkit-animation: flickerAnimation 3.5s;
+  -moz-animation: flickerAnimation 3.5s;
+  -o-animation: flickerAnimation 3.5s;
+  animation: flickerAnimation 3.5s; }
+
+.dots-anim-two {
+  -webkit-animation: flickerAnimation 8.25s infinite;
+  -moz-animation: flickerAnimation 8.25s infinite;
+  -o-animation: flickerAnimation 8.25s infinite;
+  animation: flickerAnimation 8.25s infinite; }
+
+.dots-anim-thr {
+  -webkit-animation: flickerAnimation 12.5s infinite;
+  -moz-animation: flickerAnimation 12.5s infinite;
+  -o-animation: flickerAnimation 12.5s infinite;
+  animation: flickerAnimation 12.5s infinite; }
+
+.hovicon.effect-9.sub-b:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+  color: #fff; }
+
+.hovicon.effect-9.sub-b:hover i {
+  color: #fff; }

@@ -34,12 +34,13 @@
     color: white;
 }
 .heart-img-block {
-    cursor: pointer;
     margin-top: 1em;
     text-align: center;
 }
 .heart-img {
     width: 10.5em;
+}
+.heart-img-border {
     border: 0.15em solid rgb(86, 145, 150);
 }
 .organ-text-block {
@@ -53,9 +54,16 @@
     color: white;
     font-size: 1.25em;
 }
+.organ-submit-text {
+    color: rgb(69, 128, 133);
+    margin-top: 0.5em;
+    font-size: 1.1em;
+    padding: 1em;
+    border: 0.1em solid rgb(69, 128, 133);
+    height: 9.75em;
+} 
 .heart-img-right {
     width: 10.5em;
-    height: 10.5em;
     border: 0.15em solid rgb(86, 145, 150); 
     margin-left: 4.5em;
 }

@@ -13,7 +13,7 @@ class BLock extends Component {
                     <div className="block-square-block">
                         <img className="block-square" src={BlockSq} alt="" />
                     </div>
-                    
+                    <div className="block-tx-text">TX# 0X56A3D4AB...</div>
                 </div>
             </div>
         )
