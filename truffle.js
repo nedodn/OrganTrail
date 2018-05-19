@@ -2,7 +2,7 @@
 require('babel-register')
 
 // var HDWalletProvider = require('truffle-hdwallet-provider')
-// var mnemonic = 'weapon stereo rebuild detect end beef mass egg aim coach isolate truck'
+// var mnemonic = ''
 
 module.exports = {
   networks: {
