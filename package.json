@@ -83,6 +83,8 @@
     "toastr": "^2.1.4"
   },
   "dependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "dotenv": "^2.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

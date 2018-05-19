@@ -1,11 +1,11 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.21;
 
 import "./zeppelin/ERC721/ERC721Token.sol";
 import "./zeppelin/rbac/RBACWithAdmin.sol";
-import "./zeppelin/Pausable.sol";
+import "./zeppelin/Ownable.sol";
 import "./zeppelin/SafeMath.sol";
 
-contract Organ is ERC721Token, RBACWithAdmin, Pausable {
+contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
     string public constant ROLE_SIGNER = "signer";
     string public constant ROLE_OPO = "opo";
@@ -14,6 +14,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable {
         bool submitted;
         bool[3] signatures;
         bool finished;
+        uint256 sigsCollected;
     }
 
     struct MetaData {
@@ -34,7 +35,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable {
     event SubmissionFinished(uint256 indexed id);
     event OrganMinted(address indexed minter, uint256 indexed id, address indexed recipient, uint256 timestamp, uint256 expiration);
 
-    //constructor() public {}
+    constructor() ERC721Token("Organ", "ORGAN") public {}
 
     function addSigner(address _signer) onlyAdmin public {
         adminAddRole(_signer, ROLE_SIGNER);
@@ -48,23 +49,27 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable {
         uint256 id = totalSubmissions;
 
         pendingSubmissions[id].submitted = true;
+        pendingSubmissions[id].sigsCollected = 0;
         emit Submission(msg.sender, id, block.timestamp);
 
         totalSubmissions++;
     }
 
     function signSubmission(uint256 _id) onlyRole(ROLE_SIGNER) public {
-        require(pendingSubmissions[_id].submitted && !pendingSubmissions[_id].finished);
+        //require(pendingSubmissions[_id].submitted == true && pendingSubmissions[_id].finished == false);
 
-        uint256 numSignature = pendingSubmissions[_id].signatures.length;
-        pendingSubmissions[_id].signatures[numSignature] = true;
-        emit Sign(msg.sender, _id, numSignature.add(1));
+        // Signatures storage signature = pendingSubmissions[_id];
 
-        numSignature = pendingSubmissions[_id].signatures.length;
-        if(numSignature == 3) {
-            pendingSubmissions[_id].finished = true;
-            emit SubmissionFinished(_id);
-        }
+        // uint256 numSignature = signature.sigsCollected;
+        // pendingSubmissions[_id].signatures.push(true);
+        // emit Sign(msg.sender, _id, numSignature.add(1));
+
+        // numSignature = pendingSubmissions[_id].sigsCollected;
+        // if(numSignature == 3) {
+        //     pendingSubmissions[_id].finished = true;
+        //     emit SubmissionFinished(_id);
+        // }
+        // pendingSubmissions[_id].sigsCollected++;
     }
 
     function mintOrgan(uint256 _id, address _donor, address _recipient, uint256 _expiration) onlyRole(ROLE_OPO) public {

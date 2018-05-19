@@ -1,4 +1,4 @@
-var Organ = artifacts.require("./Organ.sol");
+var Organ = artifacts.require("./contracts/Organ.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(Organ);
