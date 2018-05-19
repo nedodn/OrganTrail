@@ -1,0 +1,35 @@
+.blockchain-bg {
+    height: 11em;
+    padding: 0.25em;
+    border-bottom: 1px solid grey;
+    margin-top: 1em;
+}
+.blockchain-explore-text {
+    color:#458085;
+    margin-top: 1.25em;
+    margin-left: 0.75em;
+}
+.block-block {
+    height: 13.45em;
+    width: 13.45em;
+    margin: 0.75em;
+    cursor: pointer;
+    /* border: 1px solid rgb(69, 128, 133); */
+}
+.block-bg {
+    height: 10em;
+    /* background-color: rgb(69, 128, 133); */
+    color:rgb(69, 128, 133);
+}
+
+.block-square-block {
+    text-align: center;
+}
+.block-square {
+    width: 9.5em;
+}
+.block-main-text {
+    margin-top: -0.45em;
+    text-align: center;
+}
+

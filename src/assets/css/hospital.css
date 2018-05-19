@@ -1,0 +1,61 @@
+.hospital-header-block {
+    background-color:rgb(69, 128, 133);
+    height: 6em;
+}
+.hospital-header-text {
+    color: white;
+    margin-top: 0.25em;
+    padding-top: 0.1em;
+    text-align: center;
+}
+.hospital-icon {
+    margin-right: 0.25em;
+    color: white;
+    /* font-size: 0.75em !important; */
+}
+
+.hospital-describe-block {
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 38em;
+    padding: 0.45em;
+}
+.hospital-describe-text {
+    color: rgb(69, 128, 133);
+    font-size: 1.5em;
+    border: 0.1em solid rgb(69, 128, 133);
+}
+.hospital-describe-text-bot {
+    background-color: rgb(100, 155, 159);
+    margin-top: 0.75em;
+    font-size: 1.2em;
+    color: white;
+}
+.heart-img-block {
+    cursor: pointer;
+    margin-top: 1em;
+    text-align: center;
+}
+.heart-img {
+    width: 10.5em;
+    border: 0.15em solid rgb(86, 145, 150);
+}
+.organ-text-block {
+    border: 0.15em solid rgb(86, 145, 150);
+    background-color: rgb(86, 145, 150);
+    width: 37.5em;
+    margin-top: 0.5em;
+    padding: 1.5em;
+}
+.organ-text {
+    color: white;
+    font-size: 1.25em;
+}
+.heart-img-right {
+    width: 10.5em;
+    height: 10.5em;
+    border: 0.15em solid rgb(86, 145, 150); 
+    margin-left: 4.5em;
+}

@@ -11,6 +11,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import reducers from './reducers';
 
 import Home from './pages/Home';
+import Hospital from './pages/Hospital';
 
 // CSS font
 import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -29,9 +30,7 @@ ReactDOM.render(
 
             <Route exact path='/' component={ Home } />
 
-            {/* <Route exact path='/manufacturer' component={ Manufacturer } />
-            <Route exact path='/truck' component={ Truck } />
-            <Route exact path='/hospital' component={ Hospital } /> */}
+            <Route exact path='/hospital' component={ Hospital } />
 
         </Switch>
 
