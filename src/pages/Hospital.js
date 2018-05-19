@@ -3,6 +3,9 @@ import $ from 'jquery';
 import '../../node_modules/jquery-ui';
 import '../../node_modules/jquery-ui-bundle';
 
+import getWeb3 from '../utils/getWeb3';
+import Organ from '../../build/contracts/Organ.json';
+
 import BlockChain from '../components/BlockChain';
 import Phone from '../components/Phone';
 
@@ -12,8 +15,57 @@ import '../assets/css/hospital.css';
 class Hospital extends Component {
     
     state = {
-        blockchain: null
+        blockchain: null,
+        web3: null,
+        organInstance: null,
+        account: null,
+        account2: null
     }
+
+    componentWillMount() {
+        // Get network provider and web3 instance.
+        // See utils/getWeb3 for more info.
+  
+        getWeb3
+        .then(results => {
+          this.setState({
+            web3: results.web3
+          })
+  
+          // Instantiate contract once web3 provided.
+          this.instantiateContract()
+        })
+        .catch(() => {
+          console.log('Error finding web3.')
+        })
+      }
+
+      instantiateContract() {
+        /*
+          * SMART CONTRACT EXAMPLE
+          *
+          * Normally these functions would be called in the context of a
+          * state management library, but for convenience I've placed them here.
+          */
+  
+        const contract = require('truffle-contract')
+        const organ = contract(Organ)
+        organ.setProvider(this.state.web3.currentProvider)
+  
+        // Declaring this for later so we can chain functions on SimpleStorage.
+  
+        // Get accounts.
+        this.state.web3.eth.getAccounts((error, accounts) => {
+          organ.deployed().then((instance) => {
+            this.setState({ organInstance: instance });
+            this.setState({ 
+                account: accounts[0],
+                account2: accounts[0]
+            })
+            console.log(this.state.account2);
+          })
+        })
+      }
 
     displayBlockChain() {
         if(this.state.blockchain) {
@@ -37,6 +89,7 @@ class Hospital extends Component {
         this.setState({blockchain: true});
     }
     render() {
+        const self = this;
 
         $( function() {
             $( "#draggable" ).draggable();
@@ -44,10 +97,11 @@ class Hospital extends Component {
               drop: function( event, ui ) {
 
                 $(".heart-img").removeClass("heart-img-border");
-                setTimeout(() => {
-                    // web3 call here
+
+                self.state.organInstance.submitOrgan(self.state.account2, '0', 12, { from: self.state.account }).then((result) => {
+                    console.log(result);
                     $(".block-trigger").click();
-                }, 1500);
+                });
               }
             });
           } );
@@ -80,7 +134,7 @@ class Hospital extends Component {
                                     <div className="organ-text-block">
                                         <div className="organ-text">Organ Type: Heart</div>
                                         <div className="organ-text">Blood Type: O</div>
-                                        <div className="organ-text">Organ Size: 12.171 cm</div>
+                                        <div className="organ-text">Organ Size: 12 cm</div>
                                         <div className="organ-text">Organ Mass: 350 grams</div>
                                     </div>
                                 </div>
