@@ -2,11 +2,10 @@ pragma solidity ^0.4.23;
 
 import "./zeppelin/ERC721/ERC721Token.sol";
 import "./zeppelin/rbac/RBACWithAdmin.sol";
-import "./zeppelin/lifecycle/Pausable.sol";
+import "./zeppelin/Pausable.sol";
 import "./zeppelin/SafeMath.sol";
-import "./zeppelin/Ownable.sol";
 
-contract Organ is ERC721Token, RBACWithAdmin, Pausable, Ownable {
+contract Organ is ERC721Token, RBACWithAdmin, Pausable {
 
     string public constant ROLE_SIGNER = "signer";
     string public constant ROLE_OPO = "opo";
@@ -35,7 +34,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable, Ownable {
     event SubmissionFinished(uint256 indexed id);
     event OrganMinted(address indexed minter, uint256 indexed id, address indexed recipient, uint256 timestamp, uint256 expiration);
 
-    constructor() public {}
+    //constructor() public {}
 
     function addSigner(address _signer) onlyAdmin public {
         adminAddRole(_signer, ROLE_SIGNER);
@@ -48,7 +47,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable, Ownable {
     function submitOrgan() onlyRole(ROLE_OPO) public {
         uint256 id = totalSubmissions;
 
-        pendingSubmission[id] = true;
+        pendingSubmissions[id].submitted = true;
         emit Submission(msg.sender, id, block.timestamp);
 
         totalSubmissions++;
@@ -69,7 +68,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable, Ownable {
     }
 
     function mintOrgan(uint256 _id, address _donor, address _recipient, uint256 _expiration) onlyRole(ROLE_OPO) public {
-        require(pendingSubmission[_id].finished && !createdOrgans[_id]);
+        require(pendingSubmissions[_id].finished && !createdOrgans[_id]);
 
         _mint(msg.sender, _id);
 
@@ -84,8 +83,8 @@ contract Organ is ERC721Token, RBACWithAdmin, Pausable, Ownable {
     function transferFrom(address _from, address _to, uint256 _tokenId) public {
         super.transferFrom(_from, _to, _tokenId);
 
-        if(msg.sender == tokenIdToMetaData[_id].recipient) {
-            tokenIdToMetaData[_id].delivered = true;
+        if(msg.sender == tokenIdToMetaData[_tokenId].recipient) {
+            tokenIdToMetaData[_tokenId].delivered = true;
         }
     } 
 }
