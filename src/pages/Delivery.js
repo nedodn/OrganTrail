@@ -11,34 +11,49 @@ class Delivery extends Component {
         tokens: {},
         web3: null,
         organInstance: null,
+        timer: null,
       }
 
       this.tokenOfApprovalByIndex = this.tokenOfApprovalByIndex.bind(this);
       this.accept = this.accept.bind(this);
       this.handoff = this.handoff.bind(this);
       this.registerToken = this.registerToken.bind(this);
+      // this.updateToken = this.updateToken.bind(this);
     }
 
-    registerToken(index) {
+    registerToken(index, status) {
       const {web3, organInstance} = this.state;
-      const outer = this;
+      const that = this;
 
       organInstance.tokenIdToMetaData(index)
         .then(function(meta) {
           console.log(meta);
+          const [
+            donor,
+            bloodType,
+            size,
+            averageTemperature,
+            recipient,
+            expiration,
+            delivered
+          ] = meta;
 
           organInstance.ownerOf(index)
             .then(function(owner) {
-              outer.setState({
+
+              that.setState({
                 // bad...
                 tokens: {
-                  ...outer.state.tokens,
+                  ...that.state.tokens,
                   [index]: {
-                    donor: meta[0],
-                    recipient: meta[1],
-                    expiration: meta[2].toNumber(),
-                    delivered: meta[3],
-                    status: 'approved',
+                    donor,
+                    bloodType,
+                    size,
+                    averageTemperature,
+                    recipient,
+                    expiration: expiration.toNumber(),
+                    delivered,
+                    status: delivered ? 'delivered' : (status || that.state.tokens[index].status),
                     owner: owner,
                   },
                 },
@@ -48,54 +63,78 @@ class Delivery extends Component {
     }
 
     tokenOfApprovalByIndex(address, index, instance) {
-
       instance.tokenOfApprovalByIndex(address, index)
         .then((result) => {
           const tokenId = result.toNumber();
           console.log(tokenId);
-          this.registerToken(tokenId);
+          this.registerToken(tokenId, 'approved');
 
           this.tokenOfApprovalByIndex(address, ++index, instance);
-        });
+        })
+        .catch(() => {});
     }
 
     tokenOfOwnerByIndex(address, index, instance) {
+      instance.tokenOfOwnerByIndex(address, index)
+        .then((result) => {
+          const tokenId = result.toNumber();
+          console.log(tokenId);
+          instance.getApproved(index)
+            .then(address => {
+              console.log(address);
+              if (address === '0x0000000000000000000000000000000000000000') {
+                this.registerToken(tokenId, 'owned');
+              } else {
+                this.registerToken(tokenId, 'handing off');
+              }
+            });
 
-      // instance.tokenOfOwnerByIndex(address, index)
-      //   .then((result) => {
-      //     this.setState({
-      //       // bad...
-      //       tokens: {
-      //         ...this.state.tokens,
-      //         // todo: add meta
-      //         [result.toNumber()]: {
-      //           status: 'owned',
-      //         },
-      //       },
-      //     });
-      //     console.log(result);
-
-      //     this.tokenOfOwnerByIndex(address, ++index, instance);
-      //   });
+          this.tokenOfOwnerByIndex(address, ++index, instance);
+        })
+        .catch(() => {});
     }
 
     accept(id) {
       return () => {
-      const {web3, organInstance, tokens} = this.state;
+        const {web3, organInstance, tokens} = this.state;
+        const that = this;
 
-      web3.eth.getAccounts((error, accounts) => {
-        console.log(tokens[id].owner);
-        organInstance.transferFrom(
-          tokens[id].owner,
-          accounts[0],
-          id
-        );
-      })
+        web3.eth.getAccounts((error, accounts) => {
+          organInstance._transferFrom(
+            tokens[id].owner,
+            accounts[0],
+            id,
+            30,
+            {
+              from: accounts[0],
+              gas: 3000000,
+            }
+          ).then(() => {
+            that.registerToken(id, 'owned');
+          });;
+        });
       }
     }
 
     handoff(id) {
+      return () => {
+        const {web3, organInstance, tokens} = this.state;
+        const that = this;
 
+        web3.eth.getAccounts((error, accounts) => {
+          organInstance.approve(
+            tokens[id].recipient,
+            id,
+            {
+              from: accounts[0],
+              gas: 3000000,
+            }
+          ).then(() => {
+            that.registerToken(id, 'handing off');
+          });
+        });
+
+      }
     }
 
     componentWillMount() {
@@ -115,6 +154,25 @@ class Delivery extends Component {
         console.log('Error finding web3.')
       })
     }
+
+    // componentDidMount() {
+    //   const timer = setInterval(this.updateToken, 1000);
+    //   this.setState({timer});
+    // }
+
+    // componentWillUnmount() {
+    //   this.clearInterval(this.state.timer);
+    // }
+
+    // updateToken() {
+    //   const {tokens} = this.state;
+    //   const that = this;
+
+    //   Object.keys(tokens)
+    //     .forEach(function(tokenId) {
+    //       that.registerToken(tokenId, null);
+    //     });
+    // }
 
     instantiateContract() {
       /*
@@ -136,7 +194,7 @@ class Delivery extends Component {
           this.setState({ organInstance: instance });
 
           console.log(accounts[0]);
-          instance.balanceOf("0x64620ac0db61090270bd02ef44872cec170d619e").then(x => x.toNumber()).then(console.log);
+          instance.balanceOf('0x64620ac0db61090270bd02ef44872cec170d619e').then(x => x.toNumber()).then(console.log);
           instance.getApproved(0).then(console.log);
           instance.totalSubmissions().then(x => x.toNumber()).then(console.log);
           this.tokenOfApprovalByIndex(accounts[0], 0, instance);
@@ -150,40 +208,58 @@ class Delivery extends Component {
 
       const tokenRows = Object.keys(tokens).map(id => {
         const token = tokens[id];
+        let {
+          recipient,
+          status,
+        } = token;
+        const temperature = 30 + (id << 5) % 5;
 
         let button;
-        if (token.status === "approved") {
+        if (status === 'approved') {
           button = (
             <button onClick={this.accept(id)}>Accept</button>
           );
-        } else if (token.status === "owned") {
+        } else if (status === 'owned') {
           button = (
-            <button onClick={this.handOff(id)}>Hand off</button>
+            <button onClick={this.handoff(id)}>Hand off</button>
           );
+        }
+
+        switch (token.status) {
+          case 'owned':
+            status = 'In transit';
+            break;
+            case 'handing off':
+              status = 'Out for delivery';
+              break;
         }
 
         return (
         <tr key={id}>
           <td>{id}</td>
-          <td>Unknown</td>
-          <td>{token.status}</td>
+          <td>{recipient}</td>
+          <td>{temperature}</td>
+          <td>{status}</td>
           <td>{button}</td>
         </tr>
         );
       });
 
         return(
-            <div className="home-bg">
+            <div className='home-bg'>
                 <div>
-                    <h1 className="home-title-text">Delivery</h1>
+                    <h1 className='home-title-text'>Delivery</h1>
                 </div>
                 <div>
                   <table>
                     <thead>
-                      <td>id</td>
-                      <td>Destination</td>
-                      <td>Status</td>
-                      <td></td>
+                      <tr>
+                      <th>id</th>
+                      <th>Destination</th>
+                      <th>Temperature</th>
+                      <th>Status</th>
+                      <th></th>
+                      </tr>
                     </thead>
                     <tbody>
                     {tokenRows}
