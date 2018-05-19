@@ -1,0 +1,17 @@
+.home-bg {
+    height: 95vh;
+    background-color: rgb(255, 255, 255);
+}
+.splash-block {
+    text-align: center;
+    margin-top: 4em;
+}
+.splash-img {
+    height: 28em;
+    border: 0.1em solid rgb(69, 128, 133);
+}
+.home-title-text {
+    /* text-shadow: 0.1em 0.1em grey; */
+    color: rgb(69, 128, 133);
+    text-align: center;
+}
