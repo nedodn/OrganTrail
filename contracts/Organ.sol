@@ -19,6 +19,9 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
     struct MetaData {
         address donor;
+        bytes32 bloodType;
+        uint256 size;
+        uint256 averageTemperature;
         address recipient;
         uint256 expiration;
         bool delivered;
@@ -34,6 +37,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
     event Sign(address indexed signer, uint256 indexed id, uint256 numSignature);
     event SubmissionFinished(uint256 indexed id);
     event OrganMinted(address indexed minter, uint256 indexed id, address indexed recipient, uint256 timestamp, uint256 expiration);
+    event Delivered(address indexed recipient, uint256 indexed id, uint256 timestamp);
 
     constructor() ERC721Token("Organ", "ORGAN") public {}
 
@@ -45,11 +49,14 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         adminAddRole(_opo, ROLE_OPO);
     }
 
-    function submitOrgan() onlyRole(ROLE_OPO) public {
+    function submitOrgan(address _donor, bytes32 _bloodType, uint256 _size) onlyRole(ROLE_OPO) public {
         uint256 id = totalSubmissions;
 
         pendingSubmissions[id].submitted = true;
         pendingSubmissions[id].sigsCollected = 0;
+        tokenIdToMetaData[id].donor = _donor;
+        tokenIdToMetaData[id].bloodType = _bloodType;
+        tokenIdToMetaData[id].size = _size;
         emit Submission(msg.sender, id, block.timestamp);
 
         totalSubmissions++;
@@ -72,12 +79,11 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         }
     }
 
-    function mintOrgan(uint256 _id, address _donor, address _recipient, uint256 _expiration) onlyRole(ROLE_OPO) public {
+    function mintOrgan(uint256 _id, address _recipient, uint256 _expiration) onlyRole(ROLE_OPO) public {
         require(pendingSubmissions[_id].finished && !createdOrgans[_id]);
 
         _mint(msg.sender, _id);
 
-        tokenIdToMetaData[_id].donor = _donor;
         tokenIdToMetaData[_id].recipient = _recipient;
         tokenIdToMetaData[_id].expiration = _expiration;
 
@@ -85,11 +91,34 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
     }
 
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) public {
+    function _transferFrom(address _from, address _to, uint256 _tokenId, uint256 _averageTemperature) public {
         super.transferFrom(_from, _to, _tokenId);
+
+        tokenIdToMetaData[_tokenId].averageTemperature = _averageTemperature;
 
         if(msg.sender == tokenIdToMetaData[_tokenId].recipient) {
             tokenIdToMetaData[_tokenId].delivered = true;
+            emit Delivered(_to, _tokenId, block.timestamp);
         }
     } 
+
+    function getMetaData(uint256 _id) public view returns(address,
+                                                          bytes32,
+                                                          uint256,
+                                                          uint256,
+                                                          address,
+                                                          uint256,
+                                                          bool) {
+        MetaData storage metadata = tokenIdToMetaData[_id];
+
+        return(
+            metadata.donor,
+            metadata.bloodType,
+            metadata.size,
+            metadata.averageTemperature,
+            metadata.recipient,
+            metadata.expiration,
+            metadata.delivered
+        );
+    }
 }
