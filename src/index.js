@@ -12,6 +12,7 @@ import reducers from './reducers';
 
 import Home from './pages/Home';
 import Hospital from './pages/Hospital';
+import Delivery from './pages/Delivery';
 
 // CSS font
 import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -29,7 +30,7 @@ ReactDOM.render(
         <Switch>
 
             <Route exact path='/' component={ Home } />
-
+            <Route exact path='/delivery' component={ Delivery } />
             <Route exact path='/hospital' component={ Hospital } />
 
         </Switch>

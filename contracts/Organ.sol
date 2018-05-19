@@ -29,9 +29,11 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
     mapping (uint256 => Signatures) pendingSubmissions;
     mapping (uint256 => bool) createdOrgans;
-    mapping (uint256 => MetaData) tokenIdToMetaData;
+    mapping (uint256 => MetaData) public tokenIdToMetaData;
+    mapping (address => uint256[]) internal approvedTokens;
+    mapping (uint256 => uint256) internal approvedTokensIndex;
 
-    uint256 totalSubmissions;
+    uint256 public totalSubmissions;
 
     event Submission(address indexed submitter, uint256 indexed id, uint256 timestamp);
     event Sign(address indexed signer, uint256 indexed id, uint256 numSignature);
@@ -90,9 +92,19 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         emit OrganMinted(msg.sender, _id, _recipient, block.timestamp, _expiration);
     }
 
+    function tokenOfApprovalByIndex(address _owner, uint256 _index) public view returns (uint256) {
+        require(_index < approvedTokens[_owner].length);
+        return approvedTokens[_owner][_index];
+    }
+
+    function approve(address _to, uint256 _tokenId) public {
+        super.approve(_to, _tokenId);
+        addTokenToApproval(_to, _tokenId);
+    }
 
     function _transferFrom(address _from, address _to, uint256 _tokenId, uint256 _averageTemperature) public {
         super.transferFrom(_from, _to, _tokenId);
+        removeTokenFromApproval(_to, _tokenId);
 
         tokenIdToMetaData[_tokenId].averageTemperature = _averageTemperature;
 
@@ -100,7 +112,8 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
             tokenIdToMetaData[_tokenId].delivered = true;
             emit Delivered(_to, _tokenId, block.timestamp);
         }
-    } 
+
+    }
 
     function getMetaData(uint256 _id) public view returns(address,
                                                           bytes32,
@@ -120,5 +133,28 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
             metadata.expiration,
             metadata.delivered
         );
+
+    }
+
+    function addTokenToApproval(address _to, uint256 _tokenId) internal {
+        uint256 length = approvedTokens[_to].length;
+        approvedTokens[_to].push(_tokenId);
+        approvedTokensIndex[_tokenId] = length;
+    }
+
+    function removeTokenFromApproval(address _from, uint256 _tokenId) internal {
+        uint256 tokenIndex = approvedTokensIndex[_tokenId];
+        uint256 lastTokenIndex = approvedTokens[_from].length.sub(1);
+        uint256 lastToken = approvedTokens[_from][lastTokenIndex];
+
+        approvedTokens[_from][tokenIndex] = lastToken;
+        approvedTokens[_from][lastTokenIndex] = 0;
+        // Note that this will handle single-element arrays. In that case, both tokenIndex and lastTokenIndex are going to
+        // be zero. Then we can make sure that we will remove _tokenId from the ownedTokens list since we are first swapping
+        // the lastToken to the first position, and then dropping the element placed in the last position of the list
+
+        approvedTokens[_from].length--;
+        approvedTokensIndex[_tokenId] = 0;
+        approvedTokensIndex[lastToken] = tokenIndex;
     }
 }
