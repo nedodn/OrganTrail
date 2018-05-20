@@ -69,8 +69,8 @@ class Recipient extends Component {
 
     getMetaData() {
         this.state.organInstance.getMetaData.call(0).then((result) => {
-            console.log(result);
             this.setState({metadata:result});
+            console.log(result);
         })
     }
     displayBlocks() {
@@ -88,7 +88,13 @@ class Recipient extends Component {
     displayMetaData() {
         if(this.state.metadata) {
             return(
-                <div>
+                <div className="meta-data-block moveFromTopFade delay200">
+                    <div className="meta-data-text moveFromBottomFade delay300">Donor: {this.state.metadata[0]}</div>
+                    <div className="meta-data-text moveFromBottomFade delay300">Blood Type: {this.state.metadata[1]}</div>
+                    <div className="meta-data-text moveFromBottomFade delay400">Heart Size: {this.state.metadata[2].c}</div>
+                    <div className="meta-data-text moveFromBottomFade delay400">Average Temp: {this.state.metadata[3].c} F</div>
+                    <div className="meta-data-text moveFromBottomFade delay500">Expiration: 4 hours</div>
+                    <div className="meta-data-text moveFromBottomFade delay500">Status: Delivered</div>
                 </div>
             )
         }
@@ -118,6 +124,7 @@ class Recipient extends Component {
                                             <i className="fa fa-chevron-circle-down" /> Accept Package
                                         </div>
                                     </div>
+                                    {this.displayMetaData()}
                                 </div>
                             </div>
 

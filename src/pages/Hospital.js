@@ -142,9 +142,9 @@ class Hospital extends Component {
         if(this.state.transfer) {
             return(
                 <div className="approve-block moveFromLeftFade delay100">
-                    <div className="approve-header-text">Hospital Approve Transfer</div>
+                    <div className="approve-header-text">Recipient Found!</div>
                     <div className="waves-effect waves-light btn approve-icon" onClick={() => this.toggleTransfer()}>
-                        <i className="fa fa-check-circle-o" /> Ready For Transfer
+                        <i className="fa fa-check-circle-o" /> Confirm Transfer
                     </div>
                 </div>
             )

@@ -31,3 +31,16 @@
     text-align: center;
     width: 15em;
 }
+
+.meta-data-block {
+    margin-top: 2em;
+    border: 0.1em solid rgb(100, 152, 157);
+    background-color:white;
+    height: 14em;
+    padding: 1.45em;
+}
+.meta-data-text {
+    /* text-align: center; */
+    font-size: 1.1em;
+    color: rgb(69, 128, 133);
+}

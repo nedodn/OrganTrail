@@ -16,10 +16,10 @@ class BLockChain extends Component {
     }
     displayChainTwo() {
         return(
-            <div className="block-chain-link dots-anim-one">
-                <div className="fa fa-chain-broken block-chain-icon-thre moveFromTopFade delay300" />
+            <div className="block-chain-link dots-anim-two">
+                <div className="fa fa-chain-broken block-chain-icon-one moveFromTopFade delay300" />
                 <div className="fa fa-chain-broken block-chain-icon-two moveFromTopFade delay400" />
-                <div className="fa fa-chain-broken block-chain-icon-one moveFromTopFade delay500" />
+                <div className="fa fa-chain-broken block-chain-icon-thre moveFromTopFade delay500" />
             </div>
         )  
     }
