@@ -108,6 +108,88 @@ class BLockChain extends Component {
                     </div>
                 </div>
             )
+        }else if(this.props.stage === "four") {
+            return(
+                <div className="blockchain-bg moveFromTopFade">
+                    <div className="row">
+                        <div className="col s2 m2">
+                            <h4 className="blockchain-explore-text">Block Explorer</h4>
+                        </div>
+    
+                        <div className="col s2 m2 moveFromTopFade delay200">
+                            <Block blockNum="1" hash="0X56A3D4AB" />
+                        </div>
+                        
+                        {this.displayChain()}
+
+                        <div className="col s2 m2 moveFromTopFade delay300">
+                            <Block blockNum="2" hash="0X4205BA76" />
+                        </div>
+
+                        {this.displayChainTwo()}
+
+                        <div className="col s2 m2 moveFromTopFade delay300">
+                            <Block blockNum="3" hash="0X4205BA76" />
+                        </div>
+
+                        {this.displayChain()}
+                        
+                        <div className="col s2 m2 moveFromTopFade delay400">
+                            <Block blockNum="4" hash=" 0X829044AD" />
+                        </div>
+
+                        
+                        {/*     
+                        <div className="col s2 m2 moveFromTopFade delay500">
+                            <Block /> 
+                        </div>
+                        */}
+                        <div className="col s2 m2">
+    
+                        </div>
+                    </div>
+                </div>
+            )
+        }else if(this.props.stage === "five") {
+            return(
+                <div className="blockchain-bg moveFromTopFade">
+                    <div className="row">
+
+                        <div className="col s2 m2">
+                            <h4 className="blockchain-explore-text">Block Explorer</h4>
+                        </div>
+    
+                        <div className="col s2 m2 moveFromTopFade delay200">
+                            <Block blockNum="1" hash="0X56A3D4AB" />
+                        </div>
+                        
+                        {this.displayChain()}
+
+                        <div className="col s2 m2 moveFromTopFade delay300">
+                            <Block blockNum="2" hash="0X4205BA76" />
+                        </div>
+
+                        {this.displayChainTwo()}
+
+                        <div className="col s2 m2 moveFromTopFade delay300">
+                            <Block blockNum="3" hash="0X4205BA76" />
+                        </div>
+
+                        {this.displayChain()}
+                        
+                        <div className="col s2 m2 moveFromTopFade delay400">
+                            <Block blockNum="4" hash=" 0X829044AD" />
+                        </div>
+
+                        {this.displayChainTwo()}
+                            
+                        <div className="col s2 m2 moveFromTopFade delay500">
+                            <Block blockNum="5" hash=" 0X829044AD" /> 
+                        </div>
+        
+                    </div>
+                </div>
+            )
         }
 
     }

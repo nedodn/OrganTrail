@@ -236,9 +236,12 @@ class Hospital extends Component {
                    {this.displayBlockChain()}
                     
                     <div className="row">
+
+                        {/* link route trigger */}
                         <div className="block-trigger" onClick={() => this.toggleState()} />
                         {this.goToTruck()}
                         <Link to="/truck" className="truck-page" />
+
                         <div className="col s9 m9">
                             {/* hospital view */}
                             <div className="hospital-header-block moveFromBottomFade">

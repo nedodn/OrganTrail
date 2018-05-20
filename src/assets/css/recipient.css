@@ -1,0 +1,33 @@
+.recipient-header-block {
+    border: 0.1em solid rgb(100, 152, 157);
+    background-color:white;
+    height: 8em;
+}
+.recipient-header-text {
+    padding: 0.2em;
+    color:rgb(69, 128, 133);
+    margin-top: 0.25em;
+    text-align: center;
+}
+.recipient-icon {
+    margin-right: 0.25em;
+    color: rgb(69, 128, 133);
+}
+
+.recipient-accept-block {
+    /* width: 30em; */
+    height: 10em;
+    border: 0.1em solid rgb(100, 152, 157);
+}
+.recipient-accept-block-text {
+    text-align: center;
+    margin-top: 1.5em;
+    font-size: 1.25em;
+    color: rgb(69, 128, 133);
+}
+.accept-btn {
+    margin-top: 1.25em;
+    margin-left: 9em;
+    text-align: center;
+    width: 15em;
+}

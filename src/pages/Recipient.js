@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import getWeb3 from '../utils/getWeb3';
 import Organ from '../../build/contracts/Organ.json';
 
-import '../assets/css/home.css';
+import BlockChain from '../components/BlockChain';
+import HeartImg from '../assets/images/heart.png';
+
+import '../assets/css/recipient.css';
 
 class Recipient extends Component {
 
@@ -67,14 +70,61 @@ class Recipient extends Component {
     getMetaData() {
         this.state.organInstance.getMetaData.call(0).then((result) => {
             console.log(result);
-            this.state.metadata = result;
+            this.setState({metadata:result});
         })
+    }
+    displayBlocks() {
+        if(this.state.metadata === null) {
+            return(
+                <BlockChain stage="four" />
+            )
+        }else{
+            return(
+                <BlockChain stage="five" />
+            ) 
+        }
+    }
+
+    displayMetaData() {
+        if(this.state.metadata) {
+            return(
+                <div>
+                </div>
+            )
+        }
     }
 
     render() {
         return(
-            <div>
-                Recipient Page
+            <div className="row">
+                <div className="col s12 m12">
+                {this.displayBlocks()}
+                </div>
+
+                <div className="row">
+                    <div className="col s3 m3" />
+                    <div className="col s6 m6">
+                        <div className="recipient-header-block moveFromBottomFade">
+                            <h1 className="recipient-header-text"><a className="fa fa-hospital-o recipient-icon" /> Hospital (B)</h1>
+
+                            <div className="row">
+                                <div className="col s4 m4">
+                                    <img className="heart-img heart-img-border" src={HeartImg} alt="" />
+                                </div>
+                                <div className="col s8 m8">
+                                    <div className="recipient-accept-block">
+                                        <div className="recipient-accept-block-text">Hospital accepts package from Truck</div>
+                                        <div className="waves-effect waves-light btn accept-btn" onClick={() => this.acceptPackage()}>
+                                            <i className="fa fa-chevron-circle-down" /> Accept Package
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className="col s3 m3" />
+                </div>
             </div>
         )
     }
