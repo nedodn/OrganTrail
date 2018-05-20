@@ -74,7 +74,7 @@ class Truck extends Component {
         return(
             <div className="map-side">
                 <Phone 
-                    btnMsg="Delivery Package" 
+                    btnMsg="Deliver Package" 
                     deliveryThing={this.deliverPackage.bind(this)}
                 />
             </div>
