@@ -22,6 +22,7 @@ class Hospital extends Component {
     state = {
         blockchainOne: null,
         blockchainTwo: null,
+        transfer: null,
         phone: null,
         web3: null,
         organInstance: null,
@@ -103,10 +104,13 @@ class Hospital extends Component {
     toggleState() {
         this.setState({blockchainOne: true});
     }
+    toggleTransfer() {
+        this.setState({blockchainTwo: true});
+    }
     togglePhone() {
         this.state.organInstance.approve(this.state.account, 0, { from: this.state.account }).then((result) => {
             console.log(result);
-            this.setState({phone: true});
+            this.setState({blockchainTwo: true});
         })
     }
     displayApprove() {
@@ -114,7 +118,7 @@ class Hospital extends Component {
             return(
                 <div className="approve-block moveFromRightFade delay200">
                     <div className="approve-header-text">Hospital Approve Transfer</div>
-                    <div className="waves-effect waves-light btn approve-icon" onClick={() => this.togglePhone()}>
+                    <div className="waves-effect waves-light btn approve-icon" onClick={() => this.toggleTransfer()}>
                         <i className="fa fa-check-circle-o" /> Approve
                     </div>
                 </div>
@@ -124,8 +128,21 @@ class Hospital extends Component {
     toggleSign() {
         this.state.organInstance.signSubmission(0, { from: this.state.account }).then((result) => {
             console.log(result);
-            this.setState({blockchainTwo: true});
+            this.setState({transfer: true});
         }) 
+    }
+
+    displayTransfer() {
+        if(this.state.transfer) {
+            return(
+                <div className="approve-block moveFromLeftFade delay100">
+                    <div className="approve-header-text">Hospital Approve Transfer</div>
+                    <div className="waves-effect waves-light btn approve-icon" onClick={() => this.toggleTransfer()}>
+                        <i className="fa fa-check-circle-o" /> Ready For Transfer
+                    </div>
+                </div>
+            )
+        }
     }
 
     displayCheckList() {
@@ -133,6 +150,7 @@ class Hospital extends Component {
             return(
                 <div className="row moveFromBottomFade delay500">
                     <div className="col s3 m3">
+                        {this.displayTransfer()}
                     </div>
                     <div className="col s6 m6">
                     <div className="row">

@@ -9,7 +9,7 @@ class Phone extends Component {
     displayAccept() {
         return(
             <div className="phone-btn">
-                <Link to="/">
+                <Link to="/truck">
                 <a className="waves-effect waves-light btn">
                     <i className="fa fa-truck" /> Accept Package
                 </a>
