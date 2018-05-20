@@ -8,11 +8,11 @@ class Phone extends Component {
     
     displayAccept() {
         return(
-            <div className="phone-btn">
+            <div className="phone-btn moveFromBottomFade delay300">
                 <Link to="/truck">
-                <a className="waves-effect waves-light btn">
-                    <i className="fa fa-truck" /> Accept Package
-                </a>
+                <div className="waves-effect waves-light btn">
+                    <i className="fa fa-truck" /> {this.props.btnMsg}
+                </div>
                 </Link>
             </div>
         )
@@ -20,8 +20,8 @@ class Phone extends Component {
 
     render() {
         return(
-            <div className="phone-block moveFromRightFade delay100">
-                <img  className="phone-img" src={PhoneImg} alt="" />
+            <div className="phone-block">
+                <img className="phone-img moveFromRightFade" src={PhoneImg} alt="" />
                 {this.displayAccept()}
             </div>
         )

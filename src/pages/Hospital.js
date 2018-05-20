@@ -92,7 +92,7 @@ class Hospital extends Component {
     displayPhone() {
         if(this.state.phone) {
             return(
-                <Phone />
+                <Phone btnMsg="Accept Package" />
             )
         }else{
             return ( <div /> )
@@ -251,11 +251,9 @@ class Hospital extends Component {
                             {/* checklist */}
                             {this.displayCheckList()}
 
-                            {/* send delivery */}
-
-
                         </div>
                         <div className="col s3 m3">
+                            {/* send delivery */}
                             {this.displayPhone()}
                         </div>
                     </div>

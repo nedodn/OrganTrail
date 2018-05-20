@@ -1,0 +1,34 @@
+.google-map-container {
+  width: 90vw !important; 
+  height: 90vh !important;  
+}
+
+.clean-row {
+  margin: 0em;
+  padding: 0em; }
+
+.test {
+  color: white; 
+  color: #babbbb;
+  color: #30656a;
+  color: #427676;
+  color: #76c6c7;
+}
+
+.map-section {
+  z-index: -100;
+}
+.map-top {
+  position: fixed;
+  top: -0.2%;
+  z-index: 100;
+  background: white !important;
+}
+.map-side {
+  position: fixed;
+  top: 24.2%;
+  z-index: 100;
+  background: white !important;
+  height: 45em;
+  width: 25em;
+}
