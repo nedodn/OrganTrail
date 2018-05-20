@@ -66,10 +66,8 @@ class Hospital extends Component {
         organ.deployed().then((instance) => {
         this.setState({ organInstance: instance });
         this.setState({ 
-            account: accounts[0],
-            account2: accounts[0]
+            account: accounts[0]
         })
-        console.log(this.state.account2);
         })
     })
     }
