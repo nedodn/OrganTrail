@@ -26,7 +26,6 @@ class Hospital extends Component {
         web3: null,
         organInstance: null,
         account: null,
-        account2: null,
         phone: null
     }
 
@@ -105,7 +104,10 @@ class Hospital extends Component {
         this.setState({blockchainOne: true});
     }
     togglePhone() {
-        this.setState({phone: true})
+        this.state.organInstance.approve(this.state.account, 0, { from: this.state.account }).then((result) => {
+            console.log(result);
+            this.setState({phone: true});
+        })
     }
     displayApprove() {
         if(this.state.blockchainTwo) {
@@ -120,7 +122,10 @@ class Hospital extends Component {
         }
     }
     toggleSign() {
-        this.setState({blockchainTwo: true});
+        this.state.organInstance.signSubmission(0, { from: this.state.account }).then((result) => {
+            console.log(result);
+            this.setState({blockchainTwo: true});
+        }) 
     }
 
     displayCheckList() {
