@@ -46,7 +46,7 @@
 .organ-text-block {
     border: 0.15em solid rgb(86, 145, 150);
     background-color: rgb(86, 145, 150);
-    width: 37.5em;
+    width: 37em;
     margin-top: 0.5em;
     padding: 1.5em;
 }
@@ -64,6 +64,55 @@
 } 
 .heart-img-right {
     width: 10.5em;
-    border: 0.15em solid rgb(86, 145, 150); 
+    border: 0.15em solid #569196; 
     margin-left: 4.5em;
+}
+
+.surgeon-bg {
+    background-color: rgb(100, 155, 159);
+}
+.card-title-color {
+    font-size: 1.4em !important;
+    color: rgb(250, 226, 173);
+}
+.card-bottom {
+    background-color: rgb(255, 255, 255) !important;
+}
+.form-bg {
+    width: 8em;
+    /* background-color: white; */
+}
+#check-box {
+    color: rgb(86, 145, 150) !important;
+}
+.label-text {
+    color: rgb(86, 145, 150)!important;
+}
+
+.approve-block {
+    border: 0.15em solid #569196; 
+    height: 16em;
+    margin-top: 0.5em;
+}
+
+.approve-header-text {
+    margin-top: 3em;
+    text-align: center;
+    color: rgb(100, 155, 159);
+}
+.approve-icon {
+    text-align: center;
+    width: 12em;
+    margin-top: 1em;
+    margin-left: 2.5em;
+}
+
+.phone-img {
+    width: 20em;
+    margin-top: 1em;
+    margin-left: 1.75em;
+}
+.phone-btn {
+    margin-top: -21em;
+    text-align: center;
 }

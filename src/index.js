@@ -30,8 +30,9 @@ ReactDOM.render(
         <Switch>
 
             <Route exact path='/' component={ Home } />
-            <Route exact path='/delivery' component={ Delivery } />
+            
             <Route exact path='/hospital' component={ Hospital } />
+            <Route exact path='/delivery' component={ Delivery } />
 
         </Switch>
 

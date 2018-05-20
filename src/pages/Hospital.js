@@ -6,6 +6,11 @@ import '../../node_modules/jquery-ui-bundle';
 import getWeb3 from '../utils/getWeb3';
 import Organ from '../../build/contracts/Organ.json';
 
+import '../../node_modules/materialize-css/dist/css/materialize.css';
+import '../../node_modules/materialize-css/dist/js/materialize.js';
+import '../../node_modules/materialize-css/js/initial.js';
+import '../../node_modules/materialize-css/js/forms.js';
+
 import BlockChain from '../components/BlockChain';
 import Phone from '../components/Phone';
 
@@ -15,10 +20,14 @@ import '../assets/css/hospital.css';
 class Hospital extends Component {
     
     state = {
-        blockchain: null,
+        blockchainOne: null,
+        blockchainTwo: null,
+        phone: null,
         web3: null,
         organInstance: null,
-        account: null
+        account: null,
+        account2: null,
+        phone: null
     }
 
     componentWillMount() {
@@ -67,26 +76,99 @@ class Hospital extends Component {
     }
 
     displayBlockChain() {
-        if(this.state.blockchain) {
+        if(this.state.blockchainOne && this.state.blockchainTwo === null && this.state.phone === null) {
             return(
-                <BlockChain />
+                <BlockChain stage="one" />
+            )
+        }else if(this.state.blockchainOne && this.state.blockchainTwo && this.state.phone === null){
+            return(
+                <BlockChain stage="two" />
+            )
+        }else if(this.state.blockchainOne && this.state.blockchainTwo && this.state.phone) {
+            return(
+                <BlockChain stage="three" />
             )
         }else{
             return ( <div /> )
         }
     }
     displayPhone() {
-        if(true) {
-            return ( <div /> )
-        }else{
+        if(this.state.phone) {
             return(
                 <Phone />
             )
+        }else{
+            return ( <div /> )
         }
     }
     toggleState() {
-        this.setState({blockchain: true});
+        this.setState({blockchainOne: true});
     }
+    togglePhone() {
+        this.setState({phone: true})
+    }
+    displayApprove() {
+        if(this.state.blockchainTwo) {
+            return(
+                <div className="approve-block moveFromRightFade delay200">
+                    <div className="approve-header-text">Hospital Approve Transfer</div>
+                    <div className="waves-effect waves-light btn approve-icon" onClick={() => this.togglePhone()}>
+                        <i className="fa fa-check-circle-o" /> Approve
+                    </div>
+                </div>
+            )
+        }
+    }
+    toggleSign() {
+        this.setState({blockchainTwo: true});
+    }
+
+    displayCheckList() {
+        if(this.state.blockchainOne) {
+            return(
+                <div className="row moveFromBottomFade delay500">
+                    <div className="col s3 m3">
+                    </div>
+                    <div className="col s6 m6">
+                    <div className="row">
+                            <div className="col s12 m12">
+                            <div className="card surgeon-bg">
+                                <div className="card-content white-text">
+                                    <span className="card-title card-title-color">OPO confirms by checkbox the required signatories </span>
+                                    <p>(e.g. Neurologist, Surgeon, Patient) have attested that an organ is ready for donation to a specific Recipient at a specific transplant center and submits a transaction minting an ERC-721 token.</p>
+                                </div>
+                                <div className="card-action card-bottom">
+                                    <div className="row">
+                                        <div className="col s8 m8">
+                                        <form>
+                                            <div className="form-bg">
+                                                <input id="check-box" type="checkbox" />
+                                                <label className="label-text" htmlFor="check-box">Attested</label>
+                                            </div>
+                                        </form>
+                                        </div>
+                                        <div className="col s4 m4">
+                                            <a className="waves-effect waves-light btn" onClick={() => this.toggleSign()}>
+                                                <i className="fa fa-file-o" /> Sign
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s3 m3">
+                        {/* approve btn */}
+                        {this.displayApprove()}
+                    </div>
+                </div>
+            )
+        }else{
+            return ( <div /> )
+        }
+    }
+
     render() {
         const self = this;
 
@@ -97,13 +179,14 @@ class Hospital extends Component {
 
                 $(".heart-img").removeClass("heart-img-border");
 
-                self.state.organInstance.submitOrgan(self.state.account2, '0', 12, { from: self.state.account }).then((result) => {
+                self.state.organInstance.submitOrgan(self.state.account, '0', 12, { from: self.state.account }).then((result) => {
                     console.log(result);
                     $(".block-trigger").click();
                 });
+                
               }
             });
-          } );
+        } );
 
         return(
             <div className="row">
@@ -143,13 +226,10 @@ class Hospital extends Component {
                             </div>
 
                             {/* checklist */}
-                            <div>
-
-                            </div>
-
-                            {/* confirm organ */}
+                            {this.displayCheckList()}
 
                             {/* send delivery */}
+
 
                         </div>
                         <div className="col s3 m3">

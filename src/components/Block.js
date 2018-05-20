@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import BlockSq from '../assets/images/blockSq.png';
-import dotsPic from '../assets/images/dots.png';
 
 class BLock extends Component {
     
@@ -9,11 +8,11 @@ class BLock extends Component {
         return(
             <div className="block-block">
                 <div className="block-bg">
-                    <div className="block-main-text">Block #1</div>
+                    <div className="block-main-text">Block # {this.props.blockNum}</div>
                     <div className="block-square-block">
                         <img className="block-square" src={BlockSq} alt="" />
                     </div>
-                    <div className="block-tx-text">TX# 0X56A3D4AB...</div>
+                    <div className="block-tx-text">TX# {this.props.hash}...</div>
                 </div>
             </div>
         )
