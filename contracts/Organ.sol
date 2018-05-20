@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.4.23;
 
 import "./zeppelin/ERC721/ERC721Token.sol";
 import "./zeppelin/rbac/RBACWithAdmin.sol";
@@ -9,6 +9,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
     string public constant ROLE_SIGNER = "signer";
     string public constant ROLE_OPO = "opo";
+    uint256 public constant NUMSIGNATURES = 1;
     enum Status { SUBMITTED, MINTED, IN_TRANSIT, DELIVERED }
 
     struct Signatures {
@@ -77,7 +78,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
         signature.sigsCollected++;
         numSignature = signature.sigsCollected;
-        if(numSignature == 1) {
+        if(numSignature == NUMSIGNATURES) {
             signature.finished = true;
             tokenIdToMetaData[_id].status = Status.MINTED;
             emit SubmissionFinished(_id);
@@ -113,8 +114,6 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         tokenIdToMetaData[_tokenId].status = _status;
 
         if (_status == Status.DELIVERED) {
-        // if(msg.sender == tokenIdToMetaData[_tokenId].recipient) {
-            // tokenIdToMetaData[_tokenId].delivered = true;
             emit Delivered(_to, _tokenId, block.timestamp);
         }
 
@@ -154,9 +153,6 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
         approvedTokens[_from][tokenIndex] = lastToken;
         approvedTokens[_from][lastTokenIndex] = 0;
-        // Note that this will handle single-element arrays. In that case, both tokenIndex and lastTokenIndex are going to
-        // be zero. Then we can make sure that we will remove _tokenId from the ownedTokens list since we are first swapping
-        // the lastToken to the first position, and then dropping the element placed in the last position of the list
 
         approvedTokens[_from].length--;
         approvedTokensIndex[_tokenId] = 0;

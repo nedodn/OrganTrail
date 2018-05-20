@@ -92,7 +92,10 @@ class Hospital extends Component {
     displayPhone() {
         if(this.state.phone) {
             return(
-                <Phone btnMsg="Accept Package" />
+                <Phone 
+                    btnMsg="Accept Package" 
+                    acceptPackage={this.acceptPackage.bind(this)}
+                />
             )
         }else{
             return ( <div /> )
@@ -143,6 +146,12 @@ class Hospital extends Component {
                 </div>
             )
         }
+    }
+ 
+    acceptPackage() {
+        this.state.organInstance._transferFrom(this.state.account, this.state.account, 0, 32, 2, { from: this.state.account, gas: 1000000 }).then((result) => {
+            console.log(result);
+        });
     }
 
     displayCheckList() {
