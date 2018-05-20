@@ -89,7 +89,7 @@ contract ERC721BasicToken is ERC721Basic {
    */
   function approve(address _to, uint256 _tokenId) public {
     address owner = ownerOf(_tokenId);
-    require(_to != owner);
+
     require(msg.sender == owner || isApprovedForAll(owner, msg.sender));
 
     if (getApproved(_tokenId) != address(0) || _to != address(0)) {

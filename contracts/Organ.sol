@@ -75,7 +75,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
         signature.sigsCollected++;
         numSignature = signature.sigsCollected;
-        if(numSignature == 3) {
+        if(numSignature == 1) {
             signature.finished = true;
             emit SubmissionFinished(_id);
         }

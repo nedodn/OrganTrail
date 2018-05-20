@@ -18,8 +18,7 @@ class Hospital extends Component {
         blockchain: null,
         web3: null,
         organInstance: null,
-        account: null,
-        account2: null
+        account: null
     }
 
     componentWillMount() {
@@ -40,32 +39,32 @@ class Hospital extends Component {
         })
       }
 
-      instantiateContract() {
-        /*
-          * SMART CONTRACT EXAMPLE
-          *
-          * Normally these functions would be called in the context of a
-          * state management library, but for convenience I've placed them here.
-          */
-  
-        const contract = require('truffle-contract')
-        const organ = contract(Organ)
-        organ.setProvider(this.state.web3.currentProvider)
-  
-        // Declaring this for later so we can chain functions on SimpleStorage.
-  
-        // Get accounts.
-        this.state.web3.eth.getAccounts((error, accounts) => {
-          organ.deployed().then((instance) => {
-            this.setState({ organInstance: instance });
-            this.setState({ 
-                account: accounts[0],
-                account2: accounts[0]
-            })
-            console.log(this.state.account2);
-          })
+    instantiateContract() {
+    /*
+        * SMART CONTRACT EXAMPLE
+        *
+        * Normally these functions would be called in the context of a
+        * state management library, but for convenience I've placed them here.
+        */
+
+    const contract = require('truffle-contract')
+    const organ = contract(Organ)
+    organ.setProvider(this.state.web3.currentProvider)
+
+    // Declaring this for later so we can chain functions on SimpleStorage.
+
+    // Get accounts.
+    this.state.web3.eth.getAccounts((error, accounts) => {
+        organ.deployed().then((instance) => {
+        this.setState({ organInstance: instance });
+        this.setState({ 
+            account: accounts[0],
+            account2: accounts[0]
         })
-      }
+        console.log(this.state.account2);
+        })
+    })
+    }
 
     displayBlockChain() {
         if(this.state.blockchain) {
