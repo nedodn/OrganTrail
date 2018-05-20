@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import getWeb3 from '../utils/getWeb3';
 import Organ from '../../build/contracts/Organ.json';
 import Web3QRScanner from '../Web3QRScanner';
 
-class Delivery extends Component {
+
+class Delivery extends PureComponent {
     constructor(props) {
       super(props)
 
@@ -15,6 +16,7 @@ class Delivery extends Component {
       }
 
       this.tokenOfApprovalByIndex = this.tokenOfApprovalByIndex.bind(this);
+      this.tokenOfOwnerByIndex = this.tokenOfOwnerByIndex.bind(this);
       this.accept = this.accept.bind(this);
       this.handoff = this.handoff.bind(this);
       this.registerToken = this.registerToken.bind(this);
@@ -59,7 +61,7 @@ class Delivery extends Component {
                     expiration: expiration.toNumber(),
                     status,
                     approved,
-                    owner: owner,
+                    owner,
                   },
                 },
               });
@@ -68,13 +70,16 @@ class Delivery extends Component {
     }
 
     tokenOfApprovalByIndex(address, index, instance) {
+      const that = this;
+      // console.log(`index: ${index}`)
+
       instance.tokenOfApprovalByIndex(address, index)
         .then((result) => {
           const tokenId = result.toNumber();
           console.log(tokenId);
-          this.registerToken(tokenId, true);
+          that.registerToken(tokenId, true);
 
-          this.tokenOfApprovalByIndex(address, index + 1, instance);
+          // that.tokenOfApprovalByIndex(address, index + 1, instance);
         })
         .catch(() => {});
     }
@@ -94,13 +99,14 @@ class Delivery extends Component {
               }
             });
 
-          this.tokenOfOwnerByIndex(address, index + 1, instance);
+          // this.tokenOfOwnerByIndex(address, index + 1, instance);
         })
         .catch(() => {});
     }
 
     accept(id) {
-      return () => {
+      id = 0;
+      // return () => {
         const {web3, organInstance, tokens} = this.state;
         const that = this;
 
@@ -119,11 +125,12 @@ class Delivery extends Component {
             that.registerToken(id, false, 2);
           });
         });
-      }
+      // }
     }
 
     handoff(id) {
-      return () => {
+      id = 0;
+      // return () => {
         const {web3, organInstance, tokens} = this.state;
         const that = this;
 
@@ -139,7 +146,7 @@ class Delivery extends Component {
             that.registerToken(id, true);
           });
         });
-      }
+      // }
     }
 
     componentWillMount() {
@@ -224,13 +231,15 @@ class Delivery extends Component {
         let button;
         if (status === 'MINTED' && approved) {
           button = (
-            <button onClick={this.accept(id)}>Accept</button>
+            <div key={id}>
+              <button onClick={this.accept}>Accept</button>
+            </div>
           );
         } else if (status === 'IN_TRANSIT' && !approved) {
           button = (
-            <div>
-              <Web3QRScanner onScan={this.handoff(id)}/>
-              <button onClick={this.handoff(id)}>Hand off</button>
+            <div key={id}>
+              <Web3QRScanner onScan={this.handoff}/>
+              <button onClick={this.handoff}>Hand off</button>
             </div>
           );
         }
