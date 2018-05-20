@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import getWeb3 from '../utils/getWeb3';
 import Organ from '../../build/contracts/Organ.json';
-
+import Web3QRScanner from '../Web3QRScanner';
 
 class Delivery extends Component {
     constructor(props) {
@@ -228,7 +228,10 @@ class Delivery extends Component {
           );
         } else if (status === 'IN_TRANSIT' && !approved) {
           button = (
-            <button onClick={this.handoff(id)}>Hand off</button>
+            <div>
+              <Web3QRScanner onScan={this.handoff(id)}/>
+              <button onClick={this.handoff(id)}>Hand off</button>
+            </div>
           );
         }
 

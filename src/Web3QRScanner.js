@@ -88,7 +88,7 @@ Web3QRScanner.propTypes = {
 Web3QRScanner.defaultProps = {
   delay: 300,
   onScan: function(data) { },
-  buttonStyle: {width: 80, height: 80},
+  buttonStyle: {width: 40, height: 40},
   qrReaderStyle: {width: '100%'},
 };
 
