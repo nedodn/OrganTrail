@@ -26,8 +26,7 @@ class Hospital extends Component {
         phone: null,
         web3: null,
         organInstance: null,
-        account: null,
-        phone: null
+        account: null
     }
 
     componentWillMount() {
@@ -105,12 +104,15 @@ class Hospital extends Component {
         this.setState({blockchainOne: true});
     }
     toggleTransfer() {
-        this.setState({blockchainTwo: true});
+        this.state.organInstance.mintOrgan(0, this.state.account, 1000, { from: this.state.account }).then((result) => {
+            console.log(result);
+            this.setState({blockchainTwo: true});
+        })
     }
     togglePhone() {
         this.state.organInstance.approve(this.state.account, 0, { from: this.state.account }).then((result) => {
             console.log(result);
-            this.setState({blockchainTwo: true});
+            this.setState({phone: true});
         })
     }
     displayApprove() {
@@ -118,7 +120,7 @@ class Hospital extends Component {
             return(
                 <div className="approve-block moveFromRightFade delay200">
                     <div className="approve-header-text">Hospital Approve Transfer</div>
-                    <div className="waves-effect waves-light btn approve-icon" onClick={() => this.toggleTransfer()}>
+                    <div className="waves-effect waves-light btn approve-icon" onClick={() => this.togglePhone()}>
                         <i className="fa fa-check-circle-o" /> Approve
                     </div>
                 </div>
