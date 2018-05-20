@@ -21,22 +21,27 @@ class Delivery extends Component {
       // this.updateToken = this.updateToken.bind(this);
     }
 
-    registerToken(index, status) {
+    registerToken(index, approved, _status) {
       const {web3, organInstance} = this.state;
       const that = this;
 
       organInstance.tokenIdToMetaData(index)
         .then(function(meta) {
           console.log(meta);
-          const [
+          let [
             donor,
             bloodType,
             size,
             averageTemperature,
             recipient,
             expiration,
-            delivered
+            status
           ] = meta;
+          status = status.toNumber();
+          if (_status) {
+            status = _status;
+          }
+          status = ['SUBMITTED', 'MINTED', 'IN_TRANSIT', 'DELIVERED'][status];
 
           organInstance.ownerOf(index)
             .then(function(owner) {
@@ -52,8 +57,8 @@ class Delivery extends Component {
                     averageTemperature,
                     recipient,
                     expiration: expiration.toNumber(),
-                    delivered,
-                    status: delivered ? 'delivered' : (status || that.state.tokens[index].status),
+                    status,
+                    approved,
                     owner: owner,
                   },
                 },
@@ -67,9 +72,9 @@ class Delivery extends Component {
         .then((result) => {
           const tokenId = result.toNumber();
           console.log(tokenId);
-          this.registerToken(tokenId, 'approved');
+          this.registerToken(tokenId, true);
 
-          this.tokenOfApprovalByIndex(address, ++index, instance);
+          this.tokenOfApprovalByIndex(address, index + 1, instance);
         })
         .catch(() => {});
     }
@@ -83,13 +88,13 @@ class Delivery extends Component {
             .then(address => {
               console.log(address);
               if (address === '0x0000000000000000000000000000000000000000') {
-                this.registerToken(tokenId, 'owned');
+                this.registerToken(tokenId, false);
               } else {
-                this.registerToken(tokenId, 'handing off');
+                this.registerToken(tokenId, true);
               }
             });
 
-          this.tokenOfOwnerByIndex(address, ++index, instance);
+          this.tokenOfOwnerByIndex(address, index + 1, instance);
         })
         .catch(() => {});
     }
@@ -105,13 +110,14 @@ class Delivery extends Component {
             accounts[0],
             id,
             30,
+            2,
             {
               from: accounts[0],
               gas: 3000000,
             }
           ).then(() => {
-            that.registerToken(id, 'owned');
-          });;
+            that.registerToken(id, false, 2);
+          });
         });
       }
     }
@@ -130,10 +136,9 @@ class Delivery extends Component {
               gas: 3000000,
             }
           ).then(() => {
-            that.registerToken(id, 'handing off');
+            that.registerToken(id, true);
           });
         });
-
       }
     }
 
@@ -211,27 +216,28 @@ class Delivery extends Component {
         let {
           recipient,
           status,
+          approved,
         } = token;
         const temperature = 30 + (id << 5) % 5;
+        console.log(token);
 
         let button;
-        if (status === 'approved') {
+        if (status === 'MINTED' && approved) {
           button = (
             <button onClick={this.accept(id)}>Accept</button>
           );
-        } else if (status === 'owned') {
+        } else if (status === 'IN_TRANSIT' && !approved) {
           button = (
             <button onClick={this.handoff(id)}>Hand off</button>
           );
         }
 
-        switch (token.status) {
-          case 'owned':
-            status = 'In transit';
-            break;
-            case 'handing off':
-              status = 'Out for delivery';
-              break;
+        if (approved) {
+          switch (token.status) {
+              case 'IN_TRANSIT':
+                status = 'Out for delivery';
+                break;
+          }
         }
 
         return (

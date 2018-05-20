@@ -9,6 +9,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
     string public constant ROLE_SIGNER = "signer";
     string public constant ROLE_OPO = "opo";
+    enum Status { SUBMITTED, MINTED, IN_TRANSIT, DELIVERED }
 
     struct Signatures {
         bool submitted;
@@ -24,7 +25,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         uint256 averageTemperature;
         address recipient;
         uint256 expiration;
-        bool delivered;
+        Status status;
     }
 
     mapping (uint256 => Signatures) pendingSubmissions;
@@ -59,6 +60,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         tokenIdToMetaData[id].donor = _donor;
         tokenIdToMetaData[id].bloodType = _bloodType;
         tokenIdToMetaData[id].size = _size;
+        tokenIdToMetaData[id].status = Status.SUBMITTED;
         emit Submission(msg.sender, id, block.timestamp);
 
         totalSubmissions++;
@@ -77,6 +79,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         numSignature = signature.sigsCollected;
         if(numSignature == 1) {
             signature.finished = true;
+            tokenIdToMetaData[_id].status = Status.MINTED;
             emit SubmissionFinished(_id);
         }
     }
@@ -102,14 +105,16 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         addTokenToApproval(_to, _tokenId);
     }
 
-    function _transferFrom(address _from, address _to, uint256 _tokenId, uint256 _averageTemperature) public {
+    function _transferFrom(address _from, address _to, uint256 _tokenId, uint256 _averageTemperature, Status _status) public {
         super.transferFrom(_from, _to, _tokenId);
         removeTokenFromApproval(_to, _tokenId);
 
         tokenIdToMetaData[_tokenId].averageTemperature = _averageTemperature;
+        tokenIdToMetaData[_tokenId].status = _status;
 
-        if(msg.sender == tokenIdToMetaData[_tokenId].recipient) {
-            tokenIdToMetaData[_tokenId].delivered = true;
+        if (_status == Status.DELIVERED) {
+        // if(msg.sender == tokenIdToMetaData[_tokenId].recipient) {
+            // tokenIdToMetaData[_tokenId].delivered = true;
             emit Delivered(_to, _tokenId, block.timestamp);
         }
 
@@ -121,7 +126,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
                                                           uint256,
                                                           address,
                                                           uint256,
-                                                          bool) {
+                                                          Status) {
         MetaData storage metadata = tokenIdToMetaData[_id];
 
         return(
@@ -131,7 +136,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
             metadata.averageTemperature,
             metadata.recipient,
             metadata.expiration,
-            metadata.delivered
+            metadata.status
         );
 
     }
