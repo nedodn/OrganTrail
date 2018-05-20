@@ -220,7 +220,7 @@ class Hospital extends Component {
 
                 $(".heart-img").removeClass("heart-img-border");
 
-                self.state.organInstance.submitOrgan(self.state.account, '0', 12, { from: self.state.account }).then((result) => {
+                self.state.organInstance.submitOrgan(self.state.account, 'O', 12, { from: self.state.account }).then((result) => {
                     console.log(result);
                     $(".block-trigger").click();
                 });

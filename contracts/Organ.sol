@@ -21,7 +21,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
 
     struct MetaData {
         address donor;
-        bytes32 bloodType;
+        string bloodType;
         uint256 size;
         uint256 averageTemperature;
         address recipient;
@@ -53,7 +53,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
         adminAddRole(_opo, ROLE_OPO);
     }
 
-    function submitOrgan(address _donor, bytes32 _bloodType, uint256 _size) onlyRole(ROLE_OPO) public {
+    function submitOrgan(address _donor, string _bloodType, uint256 _size) onlyRole(ROLE_OPO) public {
         uint256 id = totalSubmissions;
 
         pendingSubmissions[id].submitted = true;
@@ -120,7 +120,7 @@ contract Organ is ERC721Token, RBACWithAdmin, Ownable {
     }
 
     function getMetaData(uint256 _id) public view returns(address,
-                                                          bytes32,
+                                                          string,
                                                           uint256,
                                                           uint256,
                                                           address,
