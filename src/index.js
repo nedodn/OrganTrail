@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import Hospital from './pages/Hospital';
 import Delivery from './pages/Delivery';
 import Truck from './pages/Truck';
+import Recipient from './pages/Recipient';
 
 // CSS font
 import '../node_modules/font-awesome/css/font-awesome.min.css';
@@ -33,8 +34,9 @@ ReactDOM.render(
             <Route exact path='/' component={ Home } />
             
             <Route exact path='/hospital' component={ Hospital } />
-            <Route exact path='/delivery' component={ Delivery } />
             <Route exact path='/truck' component={ Truck } />
+            <Route exact path='/delivery' component={ Delivery } />
+            <Route exact path='/recipient' component={ Recipient } />
             
         </Switch>
 

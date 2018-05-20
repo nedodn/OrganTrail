@@ -13,8 +13,6 @@ class Phone extends Component {
                 <div className="waves-effect waves-light btn" onClick={() => this.props.acceptPackage()}>
                     <i className="fa fa-truck" /> {this.props.btnMsg}
                 </div>
-                {/* <Link to="/truck">
-                </Link> */}
             </div>
         )
     }
@@ -24,19 +22,30 @@ class Phone extends Component {
                 <div className="waves-effect waves-light btn">
                     <i className="fa fa-truck" /> {this.props.btnMsg}
                 </div>
-                {/* <Link to="/truck">
-                </Link> */}
             </div>
         )
     }
 
     render() {
-        return(
-            <div className="phone-block">
-                <img className="phone-img moveFromRightFade" src={PhoneImg} alt="" />
-                {this.displayAccept()}
-            </div>
-        )
+        if(this.props.btnMsg==="Accept Package") {
+            return(
+                <div className="phone-block">
+                    <img className="phone-img moveFromRightFade" src={PhoneImg} alt="" />
+                    {this.displayAccept()}
+                </div>
+            )
+        }else if(this.props.btnMsg==="Deliver Package") {
+            return(
+                <div className="phone-block">
+                    <img className="phone-img moveFromRightFade" src={PhoneImg} alt="" />
+                    {this.displayDeliver()}
+                </div>
+            )
+        }else{
+            return(
+                <div />
+            )
+        }
     }
 }
 export default Phone;

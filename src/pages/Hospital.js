@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import $ from 'jquery';
 import '../../node_modules/jquery-ui';
 import '../../node_modules/jquery-ui-bundle';
@@ -26,7 +28,8 @@ class Hospital extends Component {
         phone: null,
         web3: null,
         organInstance: null,
-        account: null
+        account: null,
+        route: null
     }
 
     componentWillMount() {
@@ -151,7 +154,13 @@ class Hospital extends Component {
     acceptPackage() {
         this.state.organInstance._transferFrom(this.state.account, this.state.account, 0, 32, 2, { from: this.state.account, gas: 1000000 }).then((result) => {
             console.log(result);
+            this.setState({route: true});
         });
+    }
+    goToTruck() {
+        if(this.state.route) {
+            $(".truck-page")[0].click();
+        }
     }
 
     displayCheckList() {
@@ -228,6 +237,8 @@ class Hospital extends Component {
                     
                     <div className="row">
                         <div className="block-trigger" onClick={() => this.toggleState()} />
+                        {this.goToTruck()}
+                        <Link to="/truck" className="truck-page" />
                         <div className="col s9 m9">
                             {/* hospital view */}
                             <div className="hospital-header-block moveFromBottomFade">

@@ -34,24 +34,11 @@ class BLockChain extends Component {
                         </div>
     
                         <div className="col s2 m2 moveFromTopFade delay200">
-                            <Block />
+                            <Block blockNum="1" hash="0X56A3D4AB" />
                         </div>
                         
                         <div className="col s6 m6" />
-                        {/*     
-                        {this.displayChain()}
-                        <div className="col s2 m2 moveFromTopFade delay300">
-                            <Block />
-                        </div>
-                        <div className="col s2 m2 moveFromTopFade delay400">
-                            <Block />
-                        </div>
-                        <div className="col s2 m2 moveFromTopFade delay500">
-                            <Block /> 
-                        </div>
-                        */}
                         <div className="col s2 m2">
-    
                         </div>
                     </div>
                 </div>
@@ -75,15 +62,6 @@ class BLockChain extends Component {
                         </div>
 
                         <div className="col s4 m4" />
-
-                        {/*     
-                        <div className="col s2 m2 moveFromTopFade delay400">
-                            <Block />
-                        </div>
-                        <div className="col s2 m2 moveFromTopFade delay500">
-                            <Block /> 
-                        </div>
-                        */}
                         <div className="col s2 m2">
     
                         </div>

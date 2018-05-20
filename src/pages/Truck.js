@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import $ from 'jquery';
 
 import TruckDirectionMap from '../components/maps/TruckDirectionMap';
 import BlockChain from '../components/BlockChain';
@@ -88,6 +91,11 @@ class Truck extends Component {
             this.setState({delivery: true})
         })
     }
+    goToRecipient() {
+        if(this.state.delivery) {
+            $(".recipient-page")[0].click();
+        }
+    }
 
     render() {
         return(
@@ -103,11 +111,13 @@ class Truck extends Component {
                 </div>
 
                 <div className="row">
-                <div className="col s12 m12 map-top">
-                    {this.displayBlocks()}
-                </div>
+                    <div className="col s12 m12 map-top">
+                        {this.displayBlocks()}
+                    </div>
                 </div>
 
+                {this.goToRecipient()}
+                <Link to="/recipient" className="recipient-page" />
             </div>
         )
     }
