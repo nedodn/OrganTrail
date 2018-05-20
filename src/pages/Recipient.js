@@ -58,7 +58,7 @@ class Recipient extends Component {
     }
 
     acceptPackage() {
-        this.state.organInstance._transferFrom(this.state.account, this.state.account, 0, 32, 3, { from: this.state.account }).then((result) => {
+        this.state.organInstance._transferFrom(this.state.account, this.state.account, 0, 32, 3, { from: this.state.account, gas: 1000000 }).then((result) => {
             console.log(result);
             this.getMetaData();
         })
